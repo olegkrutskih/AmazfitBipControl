@@ -16,6 +16,21 @@ struct AmazfitBipService {
     public static var UUID_SERVICE_HEART_RATE: CBUUID = GattService.getUUIDFromBase(pieceUUID: "180D")
     public static var UUID_SERVICE_FIRMWARE_SERVICE = CBUUID.init(string: "00001530-0000-3512-2118-0009af100700")
     
+    public static var UUID_BATT_INFO: CBUUID = CBUUID.init(string: "00000006-0000-3512-2118-0009AF100700")
+    public static var UUID_1: CBUUID = CBUUID.init(string: "00000001-0000-3512-2118-0009AF100700")
+    public static var UUID_2: CBUUID = CBUUID.init(string: "00000002-0000-3512-2118-0009AF100700")
+    public static var UUID_CONFIG: CBUUID = CBUUID.init(string: "00000003-0000-3512-2118-0009AF100700")
+    public static var UUID_4: CBUUID = CBUUID.init(string: "00000004-0000-3512-2118-0009AF100700")
+    public static var UUID_5: CBUUID = CBUUID.init(string: "00000005-0000-3512-2118-0009AF100700")
+    public static var UUID_STEPS: CBUUID = CBUUID.init(string: "00000007-0000-3512-2118-0009AF100700")
+    public static var UUID_8: CBUUID = CBUUID.init(string: "00000008-0000-3512-2118-0009AF100700")
+    public static var UUID_9: CBUUID = CBUUID.init(string: "00000010-0000-3512-2118-0009AF100700")
+    public static var UUID_10: CBUUID = CBUUID.init(string: "0000000E-0000-3512-2118-0009AF100700")
+    public static var UUID_11: CBUUID = CBUUID.init(string: "00000020-0000-3512-2118-0009AF100700")
+    
+    public static func getUUIDS() -> [CBUUID] {
+        return [UUID_1, UUID_2, UUID_4,UUID_5,UUID_STEPS,UUID_8,UUID_9,UUID_10,UUID_11]
+    }
     
     public static var UUID_CHARACTERISTIC_WEATHER: CBUUID = CBUUID.init(string: "0000000e-0000-3512-2118-0009af100700")
     public static var UUID_CHARACTERISTIC_DEVICE_INFO: CBUUID = GattService.getUUIDFromBase(pieceUUID: "FF01")

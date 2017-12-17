@@ -20,19 +20,24 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     var amazfitDeviceData: String?
     //var heartRate: UInt16
     var pulseTimer: Timer?
+    var characteristics: [CBCharacteristic] = []
 
     var heartRateBPM1: UILabel? 
     
     let services: [CBUUID] = [
         AmazfitBipService.UUID_SERVICE_MIBAND2_SERVICE,
         AmazfitBipService.UUID_SERVICE_HEART_RATE,
-        AmazfitBipService.UUID_SERVICE_FIRMWARE_SERVICE,
-        GattService.UUID_SERVICE_ALERT_NOTIFICATION,
-        GattService.UUID_SERVICE_IMMEDIATE_ALERT
+        AmazfitBipService.UUID_SERVICE_FIRMWARE_SERVICE//,
+//        GattService.UUID_SERVICE_ALERT_NOTIFICATION,
+//        GattService.UUID_SERVICE_IMMEDIATE_ALERT,
+//        GattService.UUID_SERVICE_GENERIC_ACCESS,
+//        GattService.UUID_SERVICE_GENERIC_ATTRIBUTE,
 //        GattService.UUID_SERVICE_HEART_RATE,
 //        GattService.UUID_SERVICE_DEVICE_INFORMATION,
-//        AmazfitBipService.UUID_CHARACTERISTIC_BATTERY
-    ]
+//        //AmazfitBipService.UUID_CHARACTERISTIC_BATTERY,
+//        GattService.UUID_SERVICE_PHONE_ALERT_STATUS
+        
+    ] + GattService.getGattServices()
     
     @IBOutlet weak var heartRateBPM: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -63,8 +68,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("didConnect peripheral")
-        self.amazfitPeripheral?.discoverServices(services)
+        print("didConnect peripheral \(peripheral)")
+        self.amazfitPeripheral?.discoverServices(nil)
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
@@ -86,11 +91,49 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         print("didUpdateValueFor characteristic: \(characteristic)")
         
+        //if characteristic.uuid == AmazfitBipService.UUID_BATT_INFO || characteristic.uuid == AmazfitBipService.UUID_3 {
+            let data = characteristic.value
+        if data != nil {
+            var bytes = Array(repeating: 0 as UInt8, count:data!.count/MemoryLayout<UInt8>.size)
+            data!.copyBytes(to: &bytes, count:data!.count)
+            
+//            let b_data: UnsafePointer<UInt8>
+//            try data?.withUnsafeBytes(b_data)
+            print("=======Value for ch \(characteristic.uuid): \(bytes)=======")
+
+            if characteristic.uuid == AmazfitBipService.UUID_STEPS {
+                var steps = Array(repeating: 0 as UInt8, count:2)
+                steps.insert(data![1], at: 0)
+                steps.insert(data![2], at: 1)
+                var value : UInt32 = 0
+                let data1 = NSData(bytes: steps, length: 2)
+                data1.getBytes(&value, length: 2)
+                let ssteps = UInt32(bigEndian: value)
+                
+//                let data1 = Data(bytes: steps)
+//                let ssteps = UInt32(bigEndian: data1.withUnsafeBytes { $0.pointee })
+//                ssteps = UInt16( (bigEndian: data1.withUnsafeBytes { $0.pointee })
+                
+//                let ssteps = (steps[0] & 0xFF) | ((steps[1] & 0xFF) << 8)
+                print("------ STEPS: \(ssteps)")
+            }
+            
+            
+            
+        }
+        //}
         
+        if AmazfitBipService.getUUIDS().contains(characteristic.uuid) {
+            print("didUpdateValueFor UUIDS: \(characteristic)")
+        }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         print("didWriteValueFor characteristic")
+        
+//        if characteristic.uuid == AmazfitBipService.UUID_CONFIG {
+            print("------ CONFIG: \(characteristic)")
+//        }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
@@ -98,7 +141,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         for service in peripheral.services! {
             let thisService = service as CBService
             
-            print("peripheral: \(service.uuid), \(service.characteristics)")
+            print("service: \(service.uuid), \(service.characteristics)")
             peripheral.discoverCharacteristics(nil, for: thisService)
             
         
@@ -107,16 +150,24 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         print("didDiscoverCharacteristicsFor")
+        //print("peripheral: \(peripheral.uuid.uuidString)")
+        print("service: \(service.uuid.uuidString)")
         for c in service.characteristics! {
             let charact = c as CBCharacteristic
-            print("characteristics: \(charact.uuid.uuidString)")
             
-            if charact.uuid == GattCharacteristic.UUID_CHARACTERISTIC_NEW_ALERT {
-                self.amazfitNotify = charact
-                print("didDiscoverCharacteristicsFor::send test")
-                let data = "test".data(using: String.Encoding.utf8)
-                self.amazfitPeripheral!.writeValue(data!, for: charact, type: CBCharacteristicWriteType.withResponse)
-            }
+            print("characteristics: \(charact.uuid)")
+            //if service.uuid == AmazfitBipService.UUID_SERVICE_MIBAND2_SERVICE {
+                
+                self.characteristics.append(charact)
+                //print("AmazfitBipService.UUID_SERVICE_MIBAND2_SERVICE, append charact: \(self.characteristics)")
+            //}
+//            if charact.uuid == GattCharacteristic.UUID_CHARACTERISTIC_NEW_ALERT {
+//                self.amazfitNotify = charact
+////                print("didDiscoverCharacteristicsFor::send test")
+////                let data = "test".data(using: String.Encoding.utf8)
+////                self.amazfitPeripheral!.writeValue(data!, for: charact, type: CBCharacteristicWriteType.withResponse)
+//            }
+        
         }
     }
     
@@ -142,8 +193,44 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         print("dingDong::send test")
         let data = "test!".data(using: String.Encoding.utf8)
         
-        self.amazfitPeripheral!.writeValue(data!, for: self.amazfitNotify!, type: CBCharacteristicWriteType.withResponse)
+        //self.amazfitPeripheral!.writeValue(data!, for: self.amazfitNotify!, type: CBCharacteristicWriteType.withResponse)
+        
+        for ch in self.characteristics {
+            if ch.uuid == AmazfitBipService.UUID_BATT_INFO {
+                //self.amazfitPeripheral!.writeValue(data!, for: ch, type: CBCharacteristicWriteType.withResponse)
+                self.amazfitPeripheral!.readValue(for: ch)
+            }
+            if AmazfitBipService.getUUIDS().contains(ch.uuid) {
+                self.amazfitPeripheral!.readValue(for: ch)
+            }
+            
+            if ch.uuid == AmazfitBipService.UUID_CONFIG {
+                let dt: Data = Data.init(bytes: AmazfitBipService.COMMAND_REQUEST_GPS_VERSION)
+                self.amazfitPeripheral!.writeValue(dt, for: ch, type: .withResponse)
+            }
+            
+            if ch.uuid == GattCharacteristic.UUID_CHARACTERISTIC_NEW_ALERT {
+                let msg: [UInt8] = [toUInt8(-6),toUInt8(1), toUInt8(0)] + strToUInt8("Hello world!")
+                let dt: Data = Data.init(bytes: msg)
+                self.amazfitPeripheral!.writeValue(dt, for: ch, type: .withResponse)
+            }
+       }
+        
+        
     }
+    
+    func toUInt8(_ i: Int) -> UInt8{
+        return UInt8(bitPattern: Int8(i))
+    }
+    
+    func strToUInt8(_ s: String) -> [UInt8] {
+        var byteArray = [UInt8]()
+        for char in s.utf8{
+            byteArray += [char]
+        }
+        return byteArray
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -184,4 +271,5 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
 
 
 }
+
 
