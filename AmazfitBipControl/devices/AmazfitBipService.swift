@@ -13,8 +13,11 @@ import CoreBluetooth
 struct AmazfitBipService {
     
     public static var UUID_SERVICE_MIBAND2_SERVICE: CBUUID = GattService.getUUIDFromBase(pieceUUID: "FEE1")
-    public static var UUID_CHARACTERISTIC_WEATHER: CBUUID = CBUUID.init(string: "0000000e-0000-3512-2118-0009af100700")
+    public static var UUID_SERVICE_HEART_RATE: CBUUID = GattService.getUUIDFromBase(pieceUUID: "180D")
+    public static var UUID_SERVICE_FIRMWARE_SERVICE = CBUUID.init(string: "00001530-0000-3512-2118-0009af100700")
     
+    
+    public static var UUID_CHARACTERISTIC_WEATHER: CBUUID = CBUUID.init(string: "0000000e-0000-3512-2118-0009af100700")
     public static var UUID_CHARACTERISTIC_DEVICE_INFO: CBUUID = GattService.getUUIDFromBase(pieceUUID: "FF01")
     public static var UUID_CHARACTERISTIC_DEVICE_NAME: CBUUID = GattService.getUUIDFromBase(pieceUUID: "FF02")
     public static var UUID_CHARACTERISTIC_NOTIFICATION: CBUUID = GattService.getUUIDFromBase(pieceUUID: "FF03")

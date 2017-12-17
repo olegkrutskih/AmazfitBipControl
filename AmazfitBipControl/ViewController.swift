@@ -13,17 +13,31 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     var centralManager: CBCentralManager?
     var amazfitPeripheral: CBPeripheral?
+    var amazfitNotify: CBCharacteristic?
 //    var connected: String
 //    var bodyData: String
 //    var manufacturer: String
     var amazfitDeviceData: String?
     //var heartRate: UInt16
     var pulseTimer: Timer?
-    var heartRateBPM1: UILabel?
+
+    var heartRateBPM1: UILabel? 
+    
+    let services: [CBUUID] = [
+        AmazfitBipService.UUID_SERVICE_MIBAND2_SERVICE,
+        AmazfitBipService.UUID_SERVICE_HEART_RATE,
+        AmazfitBipService.UUID_SERVICE_FIRMWARE_SERVICE,
+        GattService.UUID_SERVICE_ALERT_NOTIFICATION,
+        GattService.UUID_SERVICE_IMMEDIATE_ALERT
+//        GattService.UUID_SERVICE_HEART_RATE,
+//        GattService.UUID_SERVICE_DEVICE_INFORMATION,
+//        AmazfitBipService.UUID_CHARACTERISTIC_BATTERY
+    ]
     
     @IBOutlet weak var heartRateBPM: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var buttonRing: UIButton!
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         // Determine the state of the peripheral
@@ -32,6 +46,10 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         }
         else if central.state == .poweredOn {
             print("CoreBluetooth BLE hardware is powered on and ready")
+            self.amazfitPeripheral!.delegate = self
+            self.centralManager!.connect(self.amazfitPeripheral!, options:nil)
+            //amazfitPeripheral!.
+            print(self.amazfitPeripheral!)
         }
         else if central.state == .unauthorized {
             print("CoreBluetooth BLE state is unauthorized")
@@ -45,14 +63,16 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        //
+        print("didConnect peripheral")
+        self.amazfitPeripheral?.discoverServices(services)
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        //
+        print("didDisconnectPeripheral")
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        print("didDiscover peripheral")
         let localName: String = advertisementData[CBAdvertisementDataLocalNameKey] as! String
         if localName.count > 0 {
             print("Found the heart rate monitor: \(localName)")
@@ -62,6 +82,44 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             self.centralManager!.connect(peripheral, options:nil)
         }
     }
+    
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        print("didUpdateValueFor characteristic: \(characteristic)")
+        
+        
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+        print("didWriteValueFor characteristic")
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+        print("didDiscoverServices")
+        for service in peripheral.services! {
+            let thisService = service as CBService
+            
+            print("peripheral: \(service.uuid), \(service.characteristics)")
+            peripheral.discoverCharacteristics(nil, for: thisService)
+            
+        
+        }
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        print("didDiscoverCharacteristicsFor")
+        for c in service.characteristics! {
+            let charact = c as CBCharacteristic
+            print("characteristics: \(charact.uuid.uuidString)")
+            
+            if charact.uuid == GattCharacteristic.UUID_CHARACTERISTIC_NEW_ALERT {
+                self.amazfitNotify = charact
+                print("didDiscoverCharacteristicsFor::send test")
+                let data = "test".data(using: String.Encoding.utf8)
+                self.amazfitPeripheral!.writeValue(data!, for: charact, type: CBCharacteristicWriteType.withResponse)
+            }
+        }
+    }
+    
     
     func getHeartBPMData(characteristic: CBCharacteristic) throws {
         
@@ -79,6 +137,13 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         
     }
 
+    @IBAction func dingDong() {
+//        self.amazfitPeripheral?.writeValue(<#T##data: Data##Data#>, for: <#T##CBCharacteristic#>, type: <#T##CBCharacteristicWriteType#>)
+        print("dingDong::send test")
+        let data = "test!".data(using: String.Encoding.utf8)
+        
+        self.amazfitPeripheral!.writeValue(data!, for: self.amazfitNotify!, type: CBCharacteristicWriteType.withResponse)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -102,10 +167,14 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         
         // Scan for all available CoreBluetooth LE devices
         
-        let services: [CBUUID] = [AmazfitBipService.UUID_SERVICE_MIBAND2_SERVICE, GattService.UUID_SERVICE_HEART_RATE, GattService.UUID_SERVICE_DEVICE_INFORMATION]
+        
         
         self.centralManager = CBCentralManager.init(delegate: self, queue: nil)
-        self.centralManager!.scanForPeripherals(withServices: services, options: nil)
+        //self.centralManager!.scanForPeripherals(withServices: nil, options: nil)
+        print(self.centralManager!.retrieveConnectedPeripherals(withServices: services))
+        self.amazfitPeripheral = self.centralManager!.retrieveConnectedPeripherals(withServices: services)[0]
+        //print(self.amazfitPeripheral?.discoverServices(nil))
+        
     }
 
     override func didReceiveMemoryWarning() {
