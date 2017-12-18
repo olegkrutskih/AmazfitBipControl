@@ -39,6 +39,7 @@
 		74BCAFA41FE7FDD80078164C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCAFA31FE7FDD80078164C /* Service.swift */; };
 		74BCAFA61FE80F980078164C /* ServicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCAFA51FE80F980078164C /* ServicesTableViewController.swift */; };
 		74BCAFA81FE810280078164C /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCAFA71FE810280078164C /* NavigationViewController.swift */; };
+		74BCAFAA1FE81BAA0078164C /* ServicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCAFA91FE81BAA0078164C /* ServicesTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		74BCAFA31FE7FDD80078164C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		74BCAFA51FE80F980078164C /* ServicesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesTableViewController.swift; sourceTree = "<group>"; };
 		74BCAFA71FE810280078164C /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		74BCAFA91FE81BAA0078164C /* ServicesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				74BCAF9D1FE7DBB70078164C /* BTViewController.swift */,
 				74BCAFA51FE80F980078164C /* ServicesTableViewController.swift */,
 				74BCAFA71FE810280078164C /* NavigationViewController.swift */,
+				74BCAFA91FE81BAA0078164C /* ServicesTableViewCell.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				74A51BA11FE40EC0001BE70D /* GattCharacteristic.swift in Sources */,
 				74A51BAA1FE79BE3001BE70D /* TabBarController.swift in Sources */,
 				74A51B921FE3D814001BE70D /* AbstractMiBandFWHelper.swift in Sources */,
+				74BCAFAA1FE81BAA0078164C /* ServicesTableViewCell.swift in Sources */,
 				74BCAFA61FE80F980078164C /* ServicesTableViewController.swift in Sources */,
 				74A51B811FE28F83001BE70D /* InstallActivity.swift in Sources */,
 				74A51BA81FE7884F001BE70D /* MessagingViewController.swift in Sources */,

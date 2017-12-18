@@ -17,8 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var tabController: UITabBarController?
     var messagesArray = [String]()
     var services = [String: Service]()
+    var amazfitServices: AmazfitServices?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        self.amazfitServices = AmazfitServices.init()
         refreshMessages(callback: nil)
         refreshServices(callback: nil)
         return true
@@ -89,7 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var table = [Services]()
             try table = context.fetch(servicesFetch) as! [Services]
             for row in table {
-                self.services[row.uuid!.uuidString] = Service(value: CBUUID.init(nsuuid: row.uuid!), isActive: row.is_active)
+                self.services[row.uuid!] = Service(value: CBUUID.init(string: row.uuid!), isActive: row.is_active)
             }
             if callback != nil {
                 callback!()
@@ -102,17 +104,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func addServices(services: [String: Service]) {
         let context = persistentContainer.viewContext
         if services.count > 0 {
-            clearMessages(callback: nil)
-        }
-        for service in services {
-            let servicesInsert = NSEntityDescription.insertNewObject(forEntityName: "Services", into: context)
-            servicesInsert.setValue(service.value.value, forKey: "uuid")
-            servicesInsert.setValue(service.value.isActive, forKey: "is_active")
-            do {
-                try context.save()
-            } catch {
-                fatalError("Failed to add services: \(error)")
+            clearServices(callback: nil)
+            for service in services {
+                let servicesInsert = NSEntityDescription.insertNewObject(forEntityName: "Services", into: context)
+                servicesInsert.setValue(service.value.value.uuidString, forKey: "uuid")
+                servicesInsert.setValue(service.value.isActive, forKey: "is_active")
+                do {
+                    try context.save()
+                } catch {
+                    fatalError("Failed to add services: \(error)")
+                }
             }
+            refreshServices(callback: nil)
         }
         
     }

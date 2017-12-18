@@ -10,6 +10,9 @@ import UIKit
 
 class ServicesTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var uuid: UILabel!
+    @IBOutlet weak var isActive: UISwitch!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -18,7 +21,7 @@ class ServicesTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        //self.isActive.setOn(!self.isActive.isOn, animated: true)
     }
 
 }

@@ -10,9 +10,14 @@ import UIKit
 
 class ServicesTableViewController: UITableViewController {
 
+    var services = (UIApplication.shared.delegate as! AppDelegate).amazfitServices!.services
+    var servicesNumberedArray = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.servicesNumberedArray.append(contentsOf: self.services.keys)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -25,33 +30,40 @@ class ServicesTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-//    @IBAction func back(_ sender: UIBarButtonItem) {
-//        _ = navigationController?.popViewController(animated: true)
-//    }
-//
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! ServicesTableViewCell
+        cell.isActive.setOn(!cell.isActive.isOn, animated: true)
+        self.services[self.servicesNumberedArray[indexPath.row]]!.isActive = cell.isActive.isOn
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.servicesNumberedArray.count
     }
 
-    /*
+    override func viewWillDisappear(_ animated: Bool) {
+        (UIApplication.shared.delegate as! AppDelegate).addServices(services: self.services)
+        (UIApplication.shared.delegate as! AppDelegate).amazfitServices!.services = self.services
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "serviceCell", for: indexPath) as! ServicesTableViewCell
+        
+        cell.name!.text = self.servicesNumberedArray[indexPath.row]
+        cell.uuid!.text = self.services[self.servicesNumberedArray[indexPath.row]]!.value.uuidString
+        let isActive = self.services[self.servicesNumberedArray[indexPath.row]]!.isActive
+        cell.isActive.setOn(isActive, animated: false)
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

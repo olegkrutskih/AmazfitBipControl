@@ -10,10 +10,12 @@
 
 import Foundation
 import CoreBluetooth
+import UIKit
 
 class AmazfitServices {
-    var services = [String: Service]()
     private let BASE_UUID = "0000%s-0000-1000-8000-00805f9b34fb"
+    var services = [String: Service]()
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     init() {
         self.services["UUID_SERVICE_MIBAND_SERVICE"] = Service(value: getUUIDFromBase(pieceUUID: "FEE0"), isActive: false)
@@ -51,6 +53,8 @@ class AmazfitServices {
         self.services["UUID_SERVICE_TX_POWER"] = Service(value: getUUIDFromBase(pieceUUID: "1804"), isActive: false)
         self.services["UUID_SERVICE_USER_DATA"] = Service(value: getUUIDFromBase(pieceUUID: "181C"), isActive: false)
         self.services["UUID_SERVICE_WEIGHT_SCALE"] = Service(value: getUUIDFromBase(pieceUUID: "181D"), isActive: false)
+        
+        syncWithDB()
     }
     
     func getUUIDFromBase(pieceUUID: String) -> CBUUID {
@@ -58,6 +62,27 @@ class AmazfitServices {
         return CBUUID.init(string: fullUUID)
     }
 
+    func syncWithDB() {
+        let servicesDB = appDelegate.services
+
+        //very simple check :)
+        if servicesDB.count == 0 || servicesDB.count == self.services.count {
+            return
+        }
+        
+        for service in servicesDB {
+            if service.value.isActive != self.services[service.key]!.isActive {
+                services[service.key]!.isActive = service.value.isActive
+            }
+        }
+        appDelegate.clearServices(callback: servicesClearInDB)
+    }
+    
+    func servicesClearInDB() {
+        appDelegate.addServices(services: self.services)
+        self.services = appDelegate.services
+    }
+    
 }
 
 
