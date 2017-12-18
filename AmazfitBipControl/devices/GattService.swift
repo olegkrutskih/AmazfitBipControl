@@ -87,4 +87,8 @@ class GattService {
         let fullUUID = BASE_UUID.replacingOccurrences(of: "%s", with: pieceUUID)
         return CBUUID.init(string: fullUUID)
     }
+    
+    static func getUUIDStringFromBase(pieceUUID: String) -> String {
+        return BASE_UUID.replacingOccurrences(of: "%s", with: pieceUUID)
+    }
 }

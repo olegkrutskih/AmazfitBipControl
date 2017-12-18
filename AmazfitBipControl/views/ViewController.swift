@@ -48,6 +48,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         // Determine the state of the peripheral
         if central.state == .poweredOff {
             print("CoreBluetooth BLE hardware is powered off")
+            
         }
         else if central.state == .poweredOn {
             print("CoreBluetooth BLE hardware is powered on and ready")

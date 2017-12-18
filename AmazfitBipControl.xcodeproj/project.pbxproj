@@ -31,6 +31,14 @@
 		74A51B9F1FE40CCF001BE70D /* GattService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B9E1FE40CCF001BE70D /* GattService.swift */; };
 		74A51BA11FE40EC0001BE70D /* GattCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51BA01FE40EC0001BE70D /* GattCharacteristic.swift */; };
 		74A51BA31FE41384001BE70D /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74A51BA21FE41384001BE70D /* Media.xcassets */; };
+		74A51BA81FE7884F001BE70D /* MessagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51BA71FE7884F001BE70D /* MessagingViewController.swift */; };
+		74A51BAA1FE79BE3001BE70D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51BA91FE79BE3001BE70D /* TabBarController.swift */; };
+		74BCAF9E1FE7DBB70078164C /* BTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCAF9D1FE7DBB70078164C /* BTViewController.swift */; };
+		74BCAFA01FE7DC150078164C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCAF9F1FE7DC150078164C /* Utils.swift */; };
+		74BCAFA21FE7F2D50078164C /* AmazfitServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCAFA11FE7F2D50078164C /* AmazfitServices.swift */; };
+		74BCAFA41FE7FDD80078164C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCAFA31FE7FDD80078164C /* Service.swift */; };
+		74BCAFA61FE80F980078164C /* ServicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCAFA51FE80F980078164C /* ServicesTableViewController.swift */; };
+		74BCAFA81FE810280078164C /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCAFA71FE810280078164C /* NavigationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +68,14 @@
 		74A51B9E1FE40CCF001BE70D /* GattService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GattService.swift; sourceTree = "<group>"; };
 		74A51BA01FE40EC0001BE70D /* GattCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GattCharacteristic.swift; sourceTree = "<group>"; };
 		74A51BA21FE41384001BE70D /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		74A51BA71FE7884F001BE70D /* MessagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingViewController.swift; sourceTree = "<group>"; };
+		74A51BA91FE79BE3001BE70D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		74BCAF9D1FE7DBB70078164C /* BTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTViewController.swift; sourceTree = "<group>"; };
+		74BCAF9F1FE7DC150078164C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		74BCAFA11FE7F2D50078164C /* AmazfitServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazfitServices.swift; sourceTree = "<group>"; };
+		74BCAFA31FE7FDD80078164C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		74BCAFA51FE80F980078164C /* ServicesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesTableViewController.swift; sourceTree = "<group>"; };
+		74BCAFA71FE810280078164C /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,14 +108,13 @@
 		74A51B641FE28A27001BE70D /* AmazfitBipControl */ = {
 			isa = PBXGroup;
 			children = (
+				74A51BA41FE786EF001BE70D /* delegates */,
 				74A51BA21FE41384001BE70D /* Media.xcassets */,
 				74A51B931FE3D9C2001BE70D /* common */,
 				74A51B851FE2911D001BE70D /* impl */,
 				74A51B821FE2909B001BE70D /* model */,
 				74A51B7F1FE28F61001BE70D /* views */,
 				74A51B7A1FE28B51001BE70D /* devices */,
-				74A51B651FE28A28001BE70D /* AppDelegate.swift */,
-				74A51B671FE28A28001BE70D /* ViewController.swift */,
 				74A51B691FE28A28001BE70D /* Main.storyboard */,
 				74A51B6F1FE28A28001BE70D /* Assets.xcassets */,
 				74A51B711FE28A28001BE70D /* LaunchScreen.storyboard */,
@@ -126,7 +141,13 @@
 		74A51B7F1FE28F61001BE70D /* views */ = {
 			isa = PBXGroup;
 			children = (
+				74A51B671FE28A28001BE70D /* ViewController.swift */,
 				74A51B801FE28F83001BE70D /* InstallActivity.swift */,
+				74A51BA71FE7884F001BE70D /* MessagingViewController.swift */,
+				74A51BA91FE79BE3001BE70D /* TabBarController.swift */,
+				74BCAF9D1FE7DBB70078164C /* BTViewController.swift */,
+				74BCAFA51FE80F980078164C /* ServicesTableViewController.swift */,
+				74BCAFA71FE810280078164C /* NavigationViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -139,6 +160,7 @@
 				74A51B8A1FE2AF2F001BE70D /* BatteryState.swift */,
 				74A51B8C1FE2AF66001BE70D /* State.swift */,
 				74A51B981FE3ED13001BE70D /* ScanFilter.swift */,
+				74BCAFA31FE7FDD80078164C /* Service.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -165,8 +187,18 @@
 			isa = PBXGroup;
 			children = (
 				74A51B941FE3D9CF001BE70D /* UriHelper.swift */,
+				74BCAF9F1FE7DC150078164C /* Utils.swift */,
+				74BCAFA11FE7F2D50078164C /* AmazfitServices.swift */,
 			);
 			path = common;
+			sourceTree = "<group>";
+		};
+		74A51BA41FE786EF001BE70D /* delegates */ = {
+			isa = PBXGroup;
+			children = (
+				74A51B651FE28A28001BE70D /* AppDelegate.swift */,
+			);
+			path = delegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				74A51B9D1FE3F9B2001BE70D /* AbstractDeviceCoordinator.swift in Sources */,
+				74BCAFA41FE7FDD80078164C /* Service.swift in Sources */,
 				74A51B901FE3D74D001BE70D /* AbstractMiBandFWInstallHandler.swift in Sources */,
 				74A51B841FE290B2001BE70D /* ItemWithDetails.swift in Sources */,
 				74A51B9F1FE40CCF001BE70D /* GattService.swift in Sources */,
@@ -253,15 +286,22 @@
 				74A51B971FE3DEEE001BE70D /* DeviceCoordinator.swift in Sources */,
 				74A51B991FE3ED13001BE70D /* ScanFilter.swift in Sources */,
 				74A51B8D1FE2AF66001BE70D /* State.swift in Sources */,
+				74BCAFA81FE810280078164C /* NavigationViewController.swift in Sources */,
 				74A51B7E1FE28E81001BE70D /* InstallHandler.swift in Sources */,
 				74A51BA11FE40EC0001BE70D /* GattCharacteristic.swift in Sources */,
+				74A51BAA1FE79BE3001BE70D /* TabBarController.swift in Sources */,
 				74A51B921FE3D814001BE70D /* AbstractMiBandFWHelper.swift in Sources */,
+				74BCAFA61FE80F980078164C /* ServicesTableViewController.swift in Sources */,
 				74A51B811FE28F83001BE70D /* InstallActivity.swift in Sources */,
+				74A51BA81FE7884F001BE70D /* MessagingViewController.swift in Sources */,
 				74A51B681FE28A28001BE70D /* ViewController.swift in Sources */,
+				74BCAF9E1FE7DBB70078164C /* BTViewController.swift in Sources */,
 				74A51B891FE29498001BE70D /* DeviceType.swift in Sources */,
 				74A51B7C1FE28B8D001BE70D /* AmazfitBipService.swift in Sources */,
+				74BCAFA21FE7F2D50078164C /* AmazfitServices.swift in Sources */,
 				74A51B661FE28A28001BE70D /* AppDelegate.swift in Sources */,
 				74A51B8B1FE2AF2F001BE70D /* BatteryState.swift in Sources */,
+				74BCAFA01FE7DC150078164C /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,13 +438,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZV42HF56HX;
+				DEVELOPMENT_TEAM = M228493F65;
 				INFOPLIST_FILE = AmazfitBipControl/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.krutskikh.AmazfitBipControl;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.krutskikh.amazfitcontrol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -414,13 +456,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZV42HF56HX;
+				DEVELOPMENT_TEAM = M228493F65;
 				INFOPLIST_FILE = AmazfitBipControl/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.krutskikh.AmazfitBipControl;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.krutskikh.amazfitcontrol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
