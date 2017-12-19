@@ -9,7 +9,7 @@
 import Foundation
 
 class Utils {
-    public static var TAG = "----------------<<AmazfitLogger::"
+    public static var TAG = "<< AmazfitLogger::"
     
     static func log(_ message: String, args: [String: Any]?){
         print(TAG + message + msgBuilder(args: args))
@@ -24,7 +24,7 @@ class Utils {
             }
             res = String(res.dropLast(2))
         }
-        res += ">>----------------"
+        res += " >>"
         return res
     }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24F103221FE72F9D004B4AE3 /* BLEServicesNameResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F103211FE72F9D004B4AE3 /* BLEServicesNameResolver.swift */; };
+		24F103241FE73699004B4AE3 /* AmazfitCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F103231FE73699004B4AE3 /* AmazfitCharacteristic.swift */; };
 		74A51B661FE28A28001BE70D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B651FE28A28001BE70D /* AppDelegate.swift */; };
 		74A51B681FE28A28001BE70D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B671FE28A28001BE70D /* ViewController.swift */; };
 		74A51B6B1FE28A28001BE70D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74A51B691FE28A28001BE70D /* Main.storyboard */; };
@@ -43,6 +45,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24F103211FE72F9D004B4AE3 /* BLEServicesNameResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEServicesNameResolver.swift; sourceTree = "<group>"; };
+		24F103231FE73699004B4AE3 /* AmazfitCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazfitCharacteristic.swift; sourceTree = "<group>"; };
 		74A51B621FE28A27001BE70D /* AmazfitBipControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmazfitBipControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74A51B651FE28A28001BE70D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74A51B671FE28A28001BE70D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +196,8 @@
 				74A51B941FE3D9CF001BE70D /* UriHelper.swift */,
 				74BCAF9F1FE7DC150078164C /* Utils.swift */,
 				74BCAFA11FE7F2D50078164C /* AmazfitServices.swift */,
+				24F103211FE72F9D004B4AE3 /* BLEServicesNameResolver.swift */,
+				24F103231FE73699004B4AE3 /* AmazfitCharacteristic.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -277,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24F103221FE72F9D004B4AE3 /* BLEServicesNameResolver.swift in Sources */,
 				74A51B9D1FE3F9B2001BE70D /* AbstractDeviceCoordinator.swift in Sources */,
 				74BCAFA41FE7FDD80078164C /* Service.swift in Sources */,
 				74A51B901FE3D74D001BE70D /* AbstractMiBandFWInstallHandler.swift in Sources */,
@@ -305,6 +312,7 @@
 				74BCAFA21FE7F2D50078164C /* AmazfitServices.swift in Sources */,
 				74A51B661FE28A28001BE70D /* AppDelegate.swift in Sources */,
 				74A51B8B1FE2AF2F001BE70D /* BatteryState.swift in Sources */,
+				24F103241FE73699004B4AE3 /* AmazfitCharacteristic.swift in Sources */,
 				74BCAFA01FE7DC150078164C /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -82,7 +82,7 @@ class ServicesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "serviceCell", for: indexPath) as! ServicesTableViewCell
-        cell.name!.text = self.servicesNumberedArray[indexPath.row]
+        cell.name!.text = self.appDelegate.amazfitServices!.getHumanNameByValue(val: self.services[self.servicesNumberedArray[indexPath.row]]!.value) // self.servicesNumberedArray[indexPath.row]
         cell.uuid!.text = self.services[self.servicesNumberedArray[indexPath.row]]!.value.uuidString
         let isActive = self.services[self.servicesNumberedArray[indexPath.row]]!.isActive
         cell.isActive.setOn(isActive, animated: false)

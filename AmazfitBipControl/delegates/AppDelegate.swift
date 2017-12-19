@@ -17,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var tabController: UITabBarController?
     var messagesArray = [String]()
     var services = [String: Service]()
+    var characteristics = [String: Characteristic]()
     var amazfitServices: AmazfitServices?
+    var amazfitCharacteristic: AmazfitCharacteristic?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Utils.log("didFinishLaunchingWithOptions", args: nil)
@@ -25,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         refreshMessages(callback: nil)
         refreshServices(callback: nil)
         self.amazfitServices = AmazfitServices.init()
+        self.amazfitCharacteristic = AmazfitCharacteristic.init()
         return true
     }
     
@@ -97,7 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var table = [Services]()
             try table = context.fetch(servicesFetch) as! [Services]
             for row in table {
-                self.services[row.name!] = Service(value: CBUUID.init(string: row.uuid!), isActive: row.is_active)
+                self.services[row.name!] = Service(value: CBUUID.init(string: row.uuid!), isActive: row.is_active, humanName: row.human_name!)
             }
             if callback != nil {
                 callback!()
@@ -117,6 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 servicesInsert.setValue(service.key, forKey: "name")
                 servicesInsert.setValue(service.value.value.uuidString, forKey: "uuid")
                 servicesInsert.setValue(service.value.isActive, forKey: "is_active")
+                servicesInsert.setValue(service.value.humanName, forKey: "human_name")
                 do {
                     try context.save()
                 } catch {

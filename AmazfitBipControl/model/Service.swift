@@ -10,7 +10,13 @@ import Foundation
 import CoreBluetooth
 
 struct Service {
-    //var nameUUID: String
     var value: CBUUID
     var isActive: Bool
+    var humanName: String
+}
+
+struct Characteristic {
+    var value: CBUUID
+    var isActive: Bool
+    var humanName: String
 }
