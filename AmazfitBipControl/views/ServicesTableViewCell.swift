@@ -15,7 +15,7 @@ class ServicesTableViewCell: UITableViewCell {
     @IBOutlet weak var isActive: UISwitch!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        isActive.isEnabled = false
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

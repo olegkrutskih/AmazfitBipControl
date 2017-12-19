@@ -10,13 +10,21 @@ import UIKit
 
 class ServicesTableViewController: UITableViewController {
 
-    var services = (UIApplication.shared.delegate as! AppDelegate).amazfitServices!.services
+    var appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var services = [String: Service]()
     var servicesNumberedArray = [String]()
+    
+    @IBOutlet weak var switcher: UISwitch!
+    @IBAction func switchAll(_ sender: Any) {
+        let enable = (sender as! UISwitch).isOn
+        for key in self.servicesNumberedArray {
+            self.services[key]!.isActive = enable
+        }
+        tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.servicesNumberedArray.append(contentsOf: self.services.keys)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -24,6 +32,20 @@ class ServicesTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 //        self.navigationItem.rightBarButtonItem = self.editButtonItem
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.services = appDelegate.amazfitServices!.services
+        self.servicesNumberedArray.removeAll()
+        self.servicesNumberedArray.append(contentsOf: self.services.keys)
+        
+        for service in self.services {
+            if service.value.isActive {
+                self.switcher.setOn(true, animated: false)
+                return
+            }
+        }
+        self.switcher.setOn(false, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,6 +64,9 @@ class ServicesTableViewController: UITableViewController {
         let cell = tableView.cellForRow(at: indexPath) as! ServicesTableViewCell
         cell.isActive.setOn(!cell.isActive.isOn, animated: true)
         self.services[self.servicesNumberedArray[indexPath.row]]!.isActive = cell.isActive.isOn
+        if switcher.isOn != cell.isActive.isOn {
+            switchAll(switcher)
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,13 +75,13 @@ class ServicesTableViewController: UITableViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        (UIApplication.shared.delegate as! AppDelegate).addServices(services: self.services)
-        (UIApplication.shared.delegate as! AppDelegate).amazfitServices!.services = self.services
+        appDelegate.addServices(services: self.services)
+        appDelegate.amazfitServices!.syncWithDB()
+        //self.services = appDelegate.amazfitServices!.services
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "serviceCell", for: indexPath) as! ServicesTableViewCell
-        
         cell.name!.text = self.servicesNumberedArray[indexPath.row]
         cell.uuid!.text = self.services[self.servicesNumberedArray[indexPath.row]]!.value.uuidString
         let isActive = self.services[self.servicesNumberedArray[indexPath.row]]!.isActive

@@ -6,10 +6,11 @@
     </entity>
     <entity name="Services" representedClassName="Services" syncable="YES" codeGenerationType="class">
         <attribute name="is_active" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="MessagesHistory" positionX="-63" positionY="-18" width="128" height="73"/>
-        <element name="Services" positionX="-63" positionY="0" width="128" height="75"/>
+        <element name="Services" positionX="-63" positionY="0" width="128" height="90"/>
     </elements>
 </model>

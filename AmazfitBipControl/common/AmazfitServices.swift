@@ -18,6 +18,7 @@ class AmazfitServices {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     init() {
+        Utils.log("AmazfitServices.init", args: nil)
         self.services["UUID_SERVICE_MIBAND_SERVICE"] = Service(value: getUUIDFromBase(pieceUUID: "FEE0"), isActive: false)
         self.services["UUID_SERVICE_MIBAND2_SERVICE"] = Service(value: getUUIDFromBase(pieceUUID: "FEE1"), isActive: false)
         self.services["UUID_SERVICE_FIRMWARE_SERVICE"] = Service(value: CBUUID.init(string: "00001530-0000-3512-2118-0009af100700"), isActive: false)
@@ -63,22 +64,38 @@ class AmazfitServices {
     }
 
     func syncWithDB() {
+        Utils.log("AmazfitServices.syncWithDB", args: nil)
         let servicesDB = appDelegate.services
 
-        //very simple check :)
-        if servicesDB.count == 0 || servicesDB.count == self.services.count {
+        // very simple check :)
+        // DB is empty
+        if servicesDB.count == 0 {
+            Utils.log("AmazfitServices.simple_check.empty_db", args: nil)
+            return
+        }
+        // very simple check :)
+        // list of services not change
+        if servicesDB.count == self.services.count {
+            Utils.log("AmazfitServices.simple_check.read_from_db", args: nil)
+            self.services = servicesDB
             return
         }
         
+        // List of services changed, or empty. Store active service
         for service in servicesDB {
+            Utils.log("AmazfitServices.sync", args: nil)
             if service.value.isActive != self.services[service.key]!.isActive {
                 services[service.key]!.isActive = service.value.isActive
             }
         }
+        
+        // ...clear DB
         appDelegate.clearServices(callback: servicesClearInDB)
     }
     
     func servicesClearInDB() {
+        // ...fill DB, restore active
+        Utils.log("AmazfitServices.servicesClearInDB", args: nil)
         appDelegate.addServices(services: self.services)
         self.services = appDelegate.services
     }

@@ -20,13 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var amazfitServices: AmazfitServices?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        self.amazfitServices = AmazfitServices.init()
+        Utils.log("didFinishLaunchingWithOptions", args: nil)
+//        Utils.log("AppDelegate.amazfitServices", args: self.amazfitServices!.services)
         refreshMessages(callback: nil)
         refreshServices(callback: nil)
+        self.amazfitServices = AmazfitServices.init()
         return true
     }
     
     func refreshMessages(callback: (()->Void)?){
+        Utils.log("AppDelegate.refreshMessages", args: nil)
         let context: NSManagedObjectContext = persistentContainer.viewContext
         self.messagesArray.removeAll()
         let entity = NSEntityDescription.entity(forEntityName: "MessagesHistory", in: context)
@@ -49,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func addMessages(id: Int, message: String) {
+        Utils.log("AppDelegate.addMessages", args: nil)
         let context = persistentContainer.viewContext
         let messagesHistory = NSEntityDescription.insertNewObject(forEntityName: "MessagesHistory", into: context)
         messagesHistory.setValue(id, forKey: "id")
@@ -61,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func clearMessages(callback: (()->Void)?) {
+        Utils.log("AppDelegate.clearMessages", args: nil)
         let context = persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "MessagesHistory", in: context)
         let messagesFetch = NSFetchRequest<NSFetchRequestResult>.init()
@@ -82,6 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func refreshServices(callback: (()->Void)?) {
+        Utils.log("AppDelegate.refreshServices", args: nil)
         let context: NSManagedObjectContext = persistentContainer.viewContext
         self.services.removeAll()
         let entity = NSEntityDescription.entity(forEntityName: "Services", in: context)
@@ -91,7 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var table = [Services]()
             try table = context.fetch(servicesFetch) as! [Services]
             for row in table {
-                self.services[row.uuid!] = Service(value: CBUUID.init(string: row.uuid!), isActive: row.is_active)
+                self.services[row.name!] = Service(value: CBUUID.init(string: row.uuid!), isActive: row.is_active)
             }
             if callback != nil {
                 callback!()
@@ -102,11 +108,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func addServices(services: [String: Service]) {
+        Utils.log("AppDelegate.addServices", args: nil)
         let context = persistentContainer.viewContext
         if services.count > 0 {
             clearServices(callback: nil)
             for service in services {
                 let servicesInsert = NSEntityDescription.insertNewObject(forEntityName: "Services", into: context)
+                servicesInsert.setValue(service.key, forKey: "name")
                 servicesInsert.setValue(service.value.value.uuidString, forKey: "uuid")
                 servicesInsert.setValue(service.value.isActive, forKey: "is_active")
                 do {
@@ -121,6 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func clearServices(callback: (()->Void)?) {
+        Utils.log("AppDelegate.clearServices", args: nil)
         let context = persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Services", in: context)
         let servicesFetch = NSFetchRequest<NSFetchRequestResult>.init()

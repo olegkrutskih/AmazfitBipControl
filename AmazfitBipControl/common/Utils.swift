@@ -12,12 +12,13 @@ class Utils {
     public static var TAG = "----------------<<AmazfitLogger::"
     
     static func log(_ message: String, args: [String: Any]?){
-        print(TAG + msgBuilder(args: args))
+        print(TAG + message + msgBuilder(args: args))
     }
     
     static func msgBuilder(args: [String: Any]?) -> String {
         var res = ""
         if args != nil && args!.count > 0 {
+            res += ", args: "
             for (key, value) in args! {
                 res += "\(key): \(value), "
             }
