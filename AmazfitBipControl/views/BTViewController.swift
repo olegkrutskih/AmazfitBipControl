@@ -9,7 +9,7 @@
 import UIKit
 import CoreBluetooth
 
-class BTViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
+class BTViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, BluetoothDelegate {
     var centralManager: CBCentralManager?
     var amazfitPeripheral: CBPeripheral?
     var appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -20,24 +20,14 @@ class BTViewController: UIViewController, CBCentralManagerDelegate, CBPeripheral
         self.centralManager = CBCentralManager.init(delegate: self, queue: nil)
         self.amazfitPeripheral = self.centralManager!.retrieveConnectedPeripherals(withServices: appDelegate.amazfitServices!.getCBUUIDs())[0]
     }
+    
+    func showDevicesView() {
+        let discoverDevicesTableViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "discoverDevices") as? DiscoverDevicesTableViewController
+        self.navigationController?.pushViewController(discoverDevicesTableViewControllerObj!, animated: true)
+    }
+    
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        if central.state == .poweredOff {
-            Utils.log("CoreBluetooth BLE hardware is powered off", args: nil)
-        }
-        else if central.state == .poweredOn {
-            Utils.log("CoreBluetooth BLE hardware is powered on and ready", args: nil)
-            self.amazfitPeripheral!.delegate = self
-            self.centralManager!.connect(self.amazfitPeripheral!, options:nil)
-        }
-        else if central.state == .unauthorized {
-            print("CoreBluetooth BLE state is unauthorized")
-        }
-        else if central.state == .unknown {
-            print("CoreBluetooth BLE state is unknown")
-        }
-        else if central.state == .unsupported {
-            print("CoreBluetooth BLE hardware is unsupported on this platform")
-        }
+        
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
@@ -62,7 +52,7 @@ class BTViewController: UIViewController, CBCentralManagerDelegate, CBPeripheral
         Utils.log("didDiscoverCharacteristicsFor service event", args: ["service": self.appDelegate.amazfitServices!.getHumanNameByValue(val: service.uuid)])
         
         for characteristic in (service.characteristics)! {
-            Utils.log("characteristic", args: ["Name": self.appDelegate.amazfitCharacteristic!.getHumanNameByValue(val: characteristic.uuid)])
+            Utils.log("characteristic", args: ["Name": self.appDelegate.amazfitDefaultCharacteristic!.getHumanNameByValue(val: characteristic.uuid)])
         }
     }
 
@@ -84,7 +74,7 @@ class BTViewController: UIViewController, CBCentralManagerDelegate, CBPeripheral
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -92,6 +82,6 @@ class BTViewController: UIViewController, CBCentralManagerDelegate, CBPeripheral
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }

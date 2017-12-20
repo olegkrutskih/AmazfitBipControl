@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		24F103221FE72F9D004B4AE3 /* BLEServicesNameResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F103211FE72F9D004B4AE3 /* BLEServicesNameResolver.swift */; };
 		24F103241FE73699004B4AE3 /* AmazfitCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F103231FE73699004B4AE3 /* AmazfitCharacteristic.swift */; };
+		7495D5DD1FEA45D400391F9F /* DiscoverServicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7495D5DC1FEA45D400391F9F /* DiscoverServicesTableViewController.swift */; };
+		7495D5DF1FEA464100391F9F /* DiscoverDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7495D5DE1FEA464100391F9F /* DiscoverDevicesTableViewController.swift */; };
+		7495D5E11FEA468500391F9F /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7495D5E01FEA468500391F9F /* BluetoothManager.swift */; };
+		7495D5E41FEA622200391F9F /* BluetoothDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7495D5E31FEA622200391F9F /* BluetoothDelegate.swift */; };
 		74A51B661FE28A28001BE70D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B651FE28A28001BE70D /* AppDelegate.swift */; };
 		74A51B681FE28A28001BE70D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B671FE28A28001BE70D /* ViewController.swift */; };
 		74A51B6B1FE28A28001BE70D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74A51B691FE28A28001BE70D /* Main.storyboard */; };
@@ -16,20 +19,6 @@
 		74A51B701FE28A28001BE70D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74A51B6F1FE28A28001BE70D /* Assets.xcassets */; };
 		74A51B731FE28A28001BE70D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74A51B711FE28A28001BE70D /* LaunchScreen.storyboard */; };
 		74A51B7C1FE28B8D001BE70D /* AmazfitBipService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B7B1FE28B8D001BE70D /* AmazfitBipService.swift */; };
-		74A51B7E1FE28E81001BE70D /* InstallHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B7D1FE28E81001BE70D /* InstallHandler.swift */; };
-		74A51B811FE28F83001BE70D /* InstallActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B801FE28F83001BE70D /* InstallActivity.swift */; };
-		74A51B841FE290B2001BE70D /* ItemWithDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B831FE290B2001BE70D /* ItemWithDetails.swift */; };
-		74A51B871FE2912E001BE70D /* GBDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B861FE2912E001BE70D /* GBDevice.swift */; };
-		74A51B891FE29498001BE70D /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B881FE29498001BE70D /* DeviceType.swift */; };
-		74A51B8B1FE2AF2F001BE70D /* BatteryState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B8A1FE2AF2F001BE70D /* BatteryState.swift */; };
-		74A51B8D1FE2AF66001BE70D /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B8C1FE2AF66001BE70D /* State.swift */; };
-		74A51B901FE3D74D001BE70D /* AbstractMiBandFWInstallHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B8F1FE3D74D001BE70D /* AbstractMiBandFWInstallHandler.swift */; };
-		74A51B921FE3D814001BE70D /* AbstractMiBandFWHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B911FE3D814001BE70D /* AbstractMiBandFWHelper.swift */; };
-		74A51B951FE3D9CF001BE70D /* UriHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B941FE3D9CF001BE70D /* UriHelper.swift */; };
-		74A51B971FE3DEEE001BE70D /* DeviceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B961FE3DEEE001BE70D /* DeviceCoordinator.swift */; };
-		74A51B991FE3ED13001BE70D /* ScanFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B981FE3ED13001BE70D /* ScanFilter.swift */; };
-		74A51B9B1FE3EEAE001BE70D /* GBDeviceCandidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B9A1FE3EEAE001BE70D /* GBDeviceCandidate.swift */; };
-		74A51B9D1FE3F9B2001BE70D /* AbstractDeviceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B9C1FE3F9B2001BE70D /* AbstractDeviceCoordinator.swift */; };
 		74A51B9F1FE40CCF001BE70D /* GattService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B9E1FE40CCF001BE70D /* GattService.swift */; };
 		74A51BA11FE40EC0001BE70D /* GattCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51BA01FE40EC0001BE70D /* GattCharacteristic.swift */; };
 		74A51BA31FE41384001BE70D /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74A51BA21FE41384001BE70D /* Media.xcassets */; };
@@ -38,15 +27,18 @@
 		74BCAF9E1FE7DBB70078164C /* BTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCAF9D1FE7DBB70078164C /* BTViewController.swift */; };
 		74BCAFA01FE7DC150078164C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCAF9F1FE7DC150078164C /* Utils.swift */; };
 		74BCAFA21FE7F2D50078164C /* AmazfitServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCAFA11FE7F2D50078164C /* AmazfitServices.swift */; };
-		74BCAFA41FE7FDD80078164C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCAFA31FE7FDD80078164C /* Service.swift */; };
+		74BCAFA41FE7FDD80078164C /* DefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCAFA31FE7FDD80078164C /* DefaultService.swift */; };
 		74BCAFA61FE80F980078164C /* ServicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCAFA51FE80F980078164C /* ServicesTableViewController.swift */; };
 		74BCAFA81FE810280078164C /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCAFA71FE810280078164C /* NavigationViewController.swift */; };
 		74BCAFAA1FE81BAA0078164C /* ServicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCAFA91FE81BAA0078164C /* ServicesTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		24F103211FE72F9D004B4AE3 /* BLEServicesNameResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEServicesNameResolver.swift; sourceTree = "<group>"; };
 		24F103231FE73699004B4AE3 /* AmazfitCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazfitCharacteristic.swift; sourceTree = "<group>"; };
+		7495D5DC1FEA45D400391F9F /* DiscoverServicesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverServicesTableViewController.swift; sourceTree = "<group>"; };
+		7495D5DE1FEA464100391F9F /* DiscoverDevicesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverDevicesTableViewController.swift; sourceTree = "<group>"; };
+		7495D5E01FEA468500391F9F /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
+		7495D5E31FEA622200391F9F /* BluetoothDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDelegate.swift; sourceTree = "<group>"; };
 		74A51B621FE28A27001BE70D /* AmazfitBipControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmazfitBipControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74A51B651FE28A28001BE70D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74A51B671FE28A28001BE70D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,20 +48,6 @@
 		74A51B721FE28A28001BE70D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74A51B741FE28A28001BE70D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74A51B7B1FE28B8D001BE70D /* AmazfitBipService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazfitBipService.swift; sourceTree = "<group>"; };
-		74A51B7D1FE28E81001BE70D /* InstallHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallHandler.swift; sourceTree = "<group>"; };
-		74A51B801FE28F83001BE70D /* InstallActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallActivity.swift; sourceTree = "<group>"; };
-		74A51B831FE290B2001BE70D /* ItemWithDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemWithDetails.swift; sourceTree = "<group>"; };
-		74A51B861FE2912E001BE70D /* GBDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBDevice.swift; sourceTree = "<group>"; };
-		74A51B881FE29498001BE70D /* DeviceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
-		74A51B8A1FE2AF2F001BE70D /* BatteryState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryState.swift; sourceTree = "<group>"; };
-		74A51B8C1FE2AF66001BE70D /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		74A51B8F1FE3D74D001BE70D /* AbstractMiBandFWInstallHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractMiBandFWInstallHandler.swift; sourceTree = "<group>"; };
-		74A51B911FE3D814001BE70D /* AbstractMiBandFWHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractMiBandFWHelper.swift; sourceTree = "<group>"; };
-		74A51B941FE3D9CF001BE70D /* UriHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UriHelper.swift; sourceTree = "<group>"; };
-		74A51B961FE3DEEE001BE70D /* DeviceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCoordinator.swift; sourceTree = "<group>"; };
-		74A51B981FE3ED13001BE70D /* ScanFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanFilter.swift; sourceTree = "<group>"; };
-		74A51B9A1FE3EEAE001BE70D /* GBDeviceCandidate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBDeviceCandidate.swift; sourceTree = "<group>"; };
-		74A51B9C1FE3F9B2001BE70D /* AbstractDeviceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractDeviceCoordinator.swift; sourceTree = "<group>"; };
 		74A51B9E1FE40CCF001BE70D /* GattService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GattService.swift; sourceTree = "<group>"; };
 		74A51BA01FE40EC0001BE70D /* GattCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GattCharacteristic.swift; sourceTree = "<group>"; };
 		74A51BA21FE41384001BE70D /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
@@ -78,7 +56,7 @@
 		74BCAF9D1FE7DBB70078164C /* BTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTViewController.swift; sourceTree = "<group>"; };
 		74BCAF9F1FE7DC150078164C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		74BCAFA11FE7F2D50078164C /* AmazfitServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazfitServices.swift; sourceTree = "<group>"; };
-		74BCAFA31FE7FDD80078164C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		74BCAFA31FE7FDD80078164C /* DefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultService.swift; sourceTree = "<group>"; };
 		74BCAFA51FE80F980078164C /* ServicesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesTableViewController.swift; sourceTree = "<group>"; };
 		74BCAFA71FE810280078164C /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		74BCAFA91FE81BAA0078164C /* ServicesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesTableViewCell.swift; sourceTree = "<group>"; };
@@ -95,6 +73,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7495D5E21FEA620B00391F9F /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				7495D5E31FEA622200391F9F /* BluetoothDelegate.swift */,
+			);
+			path = protocols;
+			sourceTree = "<group>";
+		};
 		74A51B591FE28A27001BE70D = {
 			isa = PBXGroup;
 			children = (
@@ -114,10 +100,10 @@
 		74A51B641FE28A27001BE70D /* AmazfitBipControl */ = {
 			isa = PBXGroup;
 			children = (
+				7495D5E21FEA620B00391F9F /* protocols */,
 				74A51BA41FE786EF001BE70D /* delegates */,
 				74A51BA21FE41384001BE70D /* Media.xcassets */,
 				74A51B931FE3D9C2001BE70D /* common */,
-				74A51B851FE2911D001BE70D /* impl */,
 				74A51B821FE2909B001BE70D /* model */,
 				74A51B7F1FE28F61001BE70D /* views */,
 				74A51B7A1FE28B51001BE70D /* devices */,
@@ -133,11 +119,7 @@
 		74A51B7A1FE28B51001BE70D /* devices */ = {
 			isa = PBXGroup;
 			children = (
-				74A51B8E1FE3D73A001BE70D /* miband */,
 				74A51B7B1FE28B8D001BE70D /* AmazfitBipService.swift */,
-				74A51B7D1FE28E81001BE70D /* InstallHandler.swift */,
-				74A51B961FE3DEEE001BE70D /* DeviceCoordinator.swift */,
-				74A51B9C1FE3F9B2001BE70D /* AbstractDeviceCoordinator.swift */,
 				74A51B9E1FE40CCF001BE70D /* GattService.swift */,
 				74A51BA01FE40EC0001BE70D /* GattCharacteristic.swift */,
 			);
@@ -148,13 +130,14 @@
 			isa = PBXGroup;
 			children = (
 				74A51B671FE28A28001BE70D /* ViewController.swift */,
-				74A51B801FE28F83001BE70D /* InstallActivity.swift */,
 				74A51BA71FE7884F001BE70D /* MessagingViewController.swift */,
 				74A51BA91FE79BE3001BE70D /* TabBarController.swift */,
 				74BCAF9D1FE7DBB70078164C /* BTViewController.swift */,
 				74BCAFA51FE80F980078164C /* ServicesTableViewController.swift */,
 				74BCAFA71FE810280078164C /* NavigationViewController.swift */,
 				74BCAFA91FE81BAA0078164C /* ServicesTableViewCell.swift */,
+				7495D5DC1FEA45D400391F9F /* DiscoverServicesTableViewController.swift */,
+				7495D5DE1FEA464100391F9F /* DiscoverDevicesTableViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -162,41 +145,16 @@
 		74A51B821FE2909B001BE70D /* model */ = {
 			isa = PBXGroup;
 			children = (
-				74A51B831FE290B2001BE70D /* ItemWithDetails.swift */,
-				74A51B881FE29498001BE70D /* DeviceType.swift */,
-				74A51B8A1FE2AF2F001BE70D /* BatteryState.swift */,
-				74A51B8C1FE2AF66001BE70D /* State.swift */,
-				74A51B981FE3ED13001BE70D /* ScanFilter.swift */,
-				74BCAFA31FE7FDD80078164C /* Service.swift */,
+				74BCAFA31FE7FDD80078164C /* DefaultService.swift */,
 			);
 			path = model;
-			sourceTree = "<group>";
-		};
-		74A51B851FE2911D001BE70D /* impl */ = {
-			isa = PBXGroup;
-			children = (
-				74A51B861FE2912E001BE70D /* GBDevice.swift */,
-				74A51B9A1FE3EEAE001BE70D /* GBDeviceCandidate.swift */,
-			);
-			path = impl;
-			sourceTree = "<group>";
-		};
-		74A51B8E1FE3D73A001BE70D /* miband */ = {
-			isa = PBXGroup;
-			children = (
-				74A51B8F1FE3D74D001BE70D /* AbstractMiBandFWInstallHandler.swift */,
-				74A51B911FE3D814001BE70D /* AbstractMiBandFWHelper.swift */,
-			);
-			path = miband;
 			sourceTree = "<group>";
 		};
 		74A51B931FE3D9C2001BE70D /* common */ = {
 			isa = PBXGroup;
 			children = (
-				74A51B941FE3D9CF001BE70D /* UriHelper.swift */,
 				74BCAF9F1FE7DC150078164C /* Utils.swift */,
 				74BCAFA11FE7F2D50078164C /* AmazfitServices.swift */,
-				24F103211FE72F9D004B4AE3 /* BLEServicesNameResolver.swift */,
 				24F103231FE73699004B4AE3 /* AmazfitCharacteristic.swift */,
 			);
 			path = common;
@@ -206,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				74A51B651FE28A28001BE70D /* AppDelegate.swift */,
+				7495D5E01FEA468500391F9F /* BluetoothManager.swift */,
 			);
 			path = delegates;
 			sourceTree = "<group>";
@@ -283,35 +242,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24F103221FE72F9D004B4AE3 /* BLEServicesNameResolver.swift in Sources */,
-				74A51B9D1FE3F9B2001BE70D /* AbstractDeviceCoordinator.swift in Sources */,
-				74BCAFA41FE7FDD80078164C /* Service.swift in Sources */,
-				74A51B901FE3D74D001BE70D /* AbstractMiBandFWInstallHandler.swift in Sources */,
-				74A51B841FE290B2001BE70D /* ItemWithDetails.swift in Sources */,
+				74BCAFA41FE7FDD80078164C /* DefaultService.swift in Sources */,
 				74A51B9F1FE40CCF001BE70D /* GattService.swift in Sources */,
-				74A51B951FE3D9CF001BE70D /* UriHelper.swift in Sources */,
 				74A51B6E1FE28A28001BE70D /* AmazfitBipControl.xcdatamodeld in Sources */,
-				74A51B871FE2912E001BE70D /* GBDevice.swift in Sources */,
-				74A51B9B1FE3EEAE001BE70D /* GBDeviceCandidate.swift in Sources */,
-				74A51B971FE3DEEE001BE70D /* DeviceCoordinator.swift in Sources */,
-				74A51B991FE3ED13001BE70D /* ScanFilter.swift in Sources */,
-				74A51B8D1FE2AF66001BE70D /* State.swift in Sources */,
 				74BCAFA81FE810280078164C /* NavigationViewController.swift in Sources */,
-				74A51B7E1FE28E81001BE70D /* InstallHandler.swift in Sources */,
+				7495D5E11FEA468500391F9F /* BluetoothManager.swift in Sources */,
+				7495D5DF1FEA464100391F9F /* DiscoverDevicesTableViewController.swift in Sources */,
 				74A51BA11FE40EC0001BE70D /* GattCharacteristic.swift in Sources */,
+				7495D5E41FEA622200391F9F /* BluetoothDelegate.swift in Sources */,
 				74A51BAA1FE79BE3001BE70D /* TabBarController.swift in Sources */,
-				74A51B921FE3D814001BE70D /* AbstractMiBandFWHelper.swift in Sources */,
 				74BCAFAA1FE81BAA0078164C /* ServicesTableViewCell.swift in Sources */,
 				74BCAFA61FE80F980078164C /* ServicesTableViewController.swift in Sources */,
-				74A51B811FE28F83001BE70D /* InstallActivity.swift in Sources */,
 				74A51BA81FE7884F001BE70D /* MessagingViewController.swift in Sources */,
+				7495D5DD1FEA45D400391F9F /* DiscoverServicesTableViewController.swift in Sources */,
 				74A51B681FE28A28001BE70D /* ViewController.swift in Sources */,
 				74BCAF9E1FE7DBB70078164C /* BTViewController.swift in Sources */,
-				74A51B891FE29498001BE70D /* DeviceType.swift in Sources */,
 				74A51B7C1FE28B8D001BE70D /* AmazfitBipService.swift in Sources */,
 				74BCAFA21FE7F2D50078164C /* AmazfitServices.swift in Sources */,
 				74A51B661FE28A28001BE70D /* AppDelegate.swift in Sources */,
-				74A51B8B1FE2AF2F001BE70D /* BatteryState.swift in Sources */,
 				24F103241FE73699004B4AE3 /* AmazfitCharacteristic.swift in Sources */,
 				74BCAFA01FE7DC150078164C /* Utils.swift in Sources */,
 			);

@@ -1,51 +1,23 @@
 //
-//  ServicesTableViewController.swift
+//  DiscoverServicesTableViewController.swift
 //  AmazfitBipControl
 //
-//  Created by Круцких Олег on 18.12.2017.
+//  Created by Круцких Олег on 20.12.2017.
 //  Copyright © 2017 Круцких Олег. All rights reserved.
 //
 
 import UIKit
 
-class ServicesTableViewController: UITableViewController {
+class DiscoverServicesTableViewController: UITableViewController {
 
-    var appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var defaultServices = [String: DefaultService]()
-    var defaultServicesNumberedArray = [String]()
-    
-    @IBOutlet weak var switcher: UISwitch!
-    @IBAction func switchAll(_ sender: Any) {
-        let enable = (sender as! UISwitch).isOn
-        for key in self.defaultServicesNumberedArray {
-            self.defaultServices[key]!.isActive = enable
-        }
-        tableView.reloadData()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-//        self.navigationItem.rightBarButtonItem = self.editButtonItem
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.defaultServices = appDelegate.amazfitServices!.defaultServices
-        self.defaultServicesNumberedArray.removeAll()
-        self.defaultServicesNumberedArray.append(contentsOf: self.defaultServices.keys)
-        
-        for service in self.defaultServices {
-            if service.value.isActive {
-                self.switcher.setOn(true, animated: false)
-                return
-            }
-        }
-        self.switcher.setOn(false, animated: false)
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,38 +29,23 @@ class ServicesTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! ServicesTableViewCell
-        cell.isActive.setOn(!cell.isActive.isOn, animated: true)
-        self.defaultServices[self.defaultServicesNumberedArray[indexPath.row]]!.isActive = cell.isActive.isOn
-        if switcher.isOn != cell.isActive.isOn {
-            switchAll(switcher)
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.defaultServicesNumberedArray.count
+        return 0
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        appDelegate.addServices(services: self.defaultServices)
-        appDelegate.amazfitServices!.syncWithDB()
-        //self.defaultServices = appDelegate.amazfitServices!.services
-    }
-    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "serviceCell", for: indexPath) as! ServicesTableViewCell
-        cell.name!.text = self.appDelegate.amazfitServices!.getHumanNameByValue(val: self.defaultServices[self.defaultServicesNumberedArray[indexPath.row]]!.value) // self.defaultServicesNumberedArray[indexPath.row]
-        cell.uuid!.text = self.defaultServices[self.defaultServicesNumberedArray[indexPath.row]]!.value.uuidString
-        let isActive = self.defaultServices[self.defaultServicesNumberedArray[indexPath.row]]!.isActive
-        cell.isActive.setOn(isActive, animated: false)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
+        // Configure the cell...
+
         return cell
     }
-    
+    */
 
     /*
     // Override to support conditional editing of the table view.

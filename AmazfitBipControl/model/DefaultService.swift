@@ -9,13 +9,13 @@
 import Foundation
 import CoreBluetooth
 
-struct Service {
+struct DefaultService {
     var value: CBUUID
     var isActive: Bool
     var humanName: String
 }
 
-struct Characteristic {
+struct DefaultCharacteristic {
     var value: CBUUID
     var isActive: Bool
     var humanName: String

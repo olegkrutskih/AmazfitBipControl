@@ -16,18 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var tabController: UITabBarController?
     var messagesArray = [String]()
-    var services = [String: Service]()
-    var characteristics = [String: Characteristic]()
-    var amazfitServices: AmazfitServices?
-    var amazfitCharacteristic: AmazfitCharacteristic?
+    var defaultServices = [String: DefaultService]()
+    var defaultCharacteristics = [String: DefaultCharacteristic]()
+    var amazfitServices: AmazfitDefaultServices?
+    var amazfitDefaultCharacteristic: AmazfitDefaultCharacteristic?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Utils.log("didFinishLaunchingWithOptions", args: nil)
 //        Utils.log("AppDelegate.amazfitServices", args: self.amazfitServices!.services)
         refreshMessages(callback: nil)
         refreshServices(callback: nil)
-        self.amazfitServices = AmazfitServices.init()
-        self.amazfitCharacteristic = AmazfitCharacteristic.init()
+        self.amazfitServices = AmazfitDefaultServices.init()
+        self.amazfitDefaultCharacteristic = AmazfitDefaultCharacteristic.init()
         return true
     }
     
@@ -92,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func refreshServices(callback: (()->Void)?) {
         Utils.log("AppDelegate.refreshServices", args: nil)
         let context: NSManagedObjectContext = persistentContainer.viewContext
-        self.services.removeAll()
+        self.defaultServices.removeAll()
         let entity = NSEntityDescription.entity(forEntityName: "Services", in: context)
         let servicesFetch = NSFetchRequest<NSFetchRequestResult>.init()
         servicesFetch.entity = entity
@@ -100,7 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var table = [Services]()
             try table = context.fetch(servicesFetch) as! [Services]
             for row in table {
-                self.services[row.name!] = Service(value: CBUUID.init(string: row.uuid!), isActive: row.is_active, humanName: row.human_name!)
+                self.defaultServices[row.name!] = DefaultService(value: CBUUID.init(string: row.uuid!), isActive: row.is_active, humanName: row.human_name!)
             }
             if callback != nil {
                 callback!()
@@ -110,17 +110,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func addServices(services: [String: Service]) {
+    func addServices(services: [String: DefaultService]) {
         Utils.log("AppDelegate.addServices", args: nil)
         let context = persistentContainer.viewContext
-        if services.count > 0 {
+        if self.defaultServices.count > 0 {
             clearServices(callback: nil)
-            for service in services {
+            for defaultService in self.defaultServices {
                 let servicesInsert = NSEntityDescription.insertNewObject(forEntityName: "Services", into: context)
-                servicesInsert.setValue(service.key, forKey: "name")
-                servicesInsert.setValue(service.value.value.uuidString, forKey: "uuid")
-                servicesInsert.setValue(service.value.isActive, forKey: "is_active")
-                servicesInsert.setValue(service.value.humanName, forKey: "human_name")
+                servicesInsert.setValue(defaultService.key, forKey: "name")
+                servicesInsert.setValue(defaultService.value.value.uuidString, forKey: "uuid")
+                servicesInsert.setValue(defaultService.value.isActive, forKey: "is_active")
+                servicesInsert.setValue(defaultService.value.humanName, forKey: "human_name")
                 do {
                     try context.save()
                 } catch {
@@ -145,7 +145,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 context.delete(row)
             }
             try context.save()
-            self.services.removeAll()
+            self.defaultServices.removeAll()
             if callback != nil {
                 callback!()
             }

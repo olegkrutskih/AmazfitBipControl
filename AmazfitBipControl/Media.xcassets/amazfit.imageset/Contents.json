@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "HeartImage.png",
+      "filename" : "amazfit.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "HeartImage@2x.png",
+      "filename" : "amazfit@2x.png",
       "scale" : "2x"
     },
     {
