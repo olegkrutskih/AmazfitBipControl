@@ -11,14 +11,36 @@ import Foundation
 import CoreBluetooth
 import UIKit
 
-class AmazfitDefaultServices {
-
+class AmazfitDefaultServices: NSObject {
+    public static let amazfitDeviceName = "Amazfit Bip Watch"
     private let BASE_UUID = "0000%s-0000-1000-8000-00805f9b34fb"
     private let XIAOMI_BASE_UUID = "0000%s-0000-3512-2118-0009af100700"
     var defaultServices = [String: DefaultService]()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    init() {
+    var _amazfitServices: AmazfitDefaultServices?
+    static private var instance : AmazfitDefaultServices {
+        return sharedInstance
+    }
+    private static let sharedInstance = AmazfitDefaultServices()
+    
+    private override init() {
+        super.init()
+        initAmazfitDefaultServices()
+    }
+    
+    func initAmazfitDefaultServices() {
+        fillDefaultData()
+    }
+    
+    static func getInstance() -> AmazfitDefaultServices {
+        return instance
+    }
+
+
+    
+    
+    func fillDefaultData() {
         Utils.log("AmazfitDefaultServices.init", args: nil)
         
         // Unknown

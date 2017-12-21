@@ -18,16 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var messagesArray = [String]()
     var defaultServices = [String: DefaultService]()
     var defaultCharacteristics = [String: DefaultCharacteristic]()
-    var amazfitServices: AmazfitDefaultServices?
-    var amazfitDefaultCharacteristic: AmazfitDefaultCharacteristic?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Utils.log("didFinishLaunchingWithOptions", args: nil)
 //        Utils.log("AppDelegate.amazfitServices", args: self.amazfitServices!.services)
         refreshMessages(callback: nil)
         refreshServices(callback: nil)
-        self.amazfitServices = AmazfitDefaultServices.init()
-        self.amazfitDefaultCharacteristic = AmazfitDefaultCharacteristic.init()
         return true
     }
     

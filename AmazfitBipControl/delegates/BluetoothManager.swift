@@ -73,7 +73,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         guard _manager != nil else {
             return [CBPeripheral]()
         }
-        return _manager?.retrieveConnectedPeripherals(withServices: appDelegate.amazfitServices!.getCBUUIDs())
+        return _manager?.retrieveConnectedPeripherals(withServices: AmazfitDefaultServices.getInstance().getCBUUIDs())
     }
     private(set) var connectedServices: [CBService]?
     
@@ -119,18 +119,20 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        Utils.log("didConnect peripheral event", args: ["Name": (peripheral.name)!, "inentifier":peripheral.identifier])
+        Utils.log("didConnect peripheral event", from: classForCoder, args: ["Name": (peripheral.name)!, "inentifier":peripheral.identifier])
         bluetoothDelegate?.didConnectedPeripheral?(peripheral)
         self.selectedPeripheral?.discoverServices(nil)
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+        Utils.log("didDiscoverServices event", from: classForCoder, args: ["Services": peripheral.services!])
         self.selectedServices = peripheral.services!
         bluetoothDelegate?.didDiscoverServices?(peripheral)
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         //self.selectedCharacteristics += service.characteristics!
+        Utils.log("didDiscoverCharacteristicsFor event", from: classForCoder, args: ["Name": service, "chars": (service.characteristics)!])
         bluetoothDelegate?.didDiscoverCharacteritics?(service)
     }
     

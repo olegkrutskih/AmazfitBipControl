@@ -18,20 +18,17 @@ class BTViewController: UIViewController, CBCentralManagerDelegate, CBPeripheral
         self.amazfitPeripheral = nil
         self.centralManager = nil
         self.centralManager = CBCentralManager.init(delegate: self, queue: nil)
-        self.amazfitPeripheral = self.centralManager!.retrieveConnectedPeripherals(withServices: appDelegate.amazfitServices!.getCBUUIDs())[0]
+        self.amazfitPeripheral = self.centralManager!.retrieveConnectedPeripherals(withServices: AmazfitDefaultServices.getInstance().getCBUUIDs())[0]
     }
     
-    func showDevicesView() {
-        let discoverDevicesTableViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "discoverDevices") as? DiscoverDevicesTableViewController
-        self.navigationController?.pushViewController(discoverDevicesTableViewControllerObj!, animated: true)
-    }
+    
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        Utils.log("didConnect peripheral event", args: ["Name": (peripheral.name)!, "inentifier":peripheral.identifier])
+        Utils.log("didConnect peripheral event", from: classForCoder, args: ["Name": (peripheral.name)!, "inentifier":peripheral.identifier])
         self.amazfitPeripheral?.discoverServices(nil)
     }
     
@@ -43,29 +40,38 @@ class BTViewController: UIViewController, CBCentralManagerDelegate, CBPeripheral
         Utils.log("didDiscoverServices event", args: nil)
         for service in peripheral.services! {
             let thisService = service as CBService
-            Utils.log("service", args: ["Name": self.appDelegate.amazfitServices!.getHumanNameByValue(val: service.uuid)])
+            Utils.log("service", args: ["Name": AmazfitDefaultServices.getInstance().getHumanNameByValue(val: service.uuid)])
             peripheral.discoverCharacteristics(nil, for: thisService)            
         }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        Utils.log("didDiscoverCharacteristicsFor service event", args: ["service": self.appDelegate.amazfitServices!.getHumanNameByValue(val: service.uuid)])
+        Utils.log("didDiscoverCharacteristicsFor service event", args: ["service": AmazfitDefaultServices.getInstance().getHumanNameByValue(val: service.uuid)])
         
         for characteristic in (service.characteristics)! {
-            Utils.log("characteristic", args: ["Name": self.appDelegate.amazfitDefaultCharacteristic!.getHumanNameByValue(val: characteristic.uuid)])
+            Utils.log("characteristic", args: ["Name": AmazfitDefaultCharacteristic.getInstance().getHumanNameByValue(val: characteristic.uuid)])
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        getDevices()
         //initBT()
     }
+    
+    func getDevices() {
+        Utils.log("getDevices", args: nil)
+        let devices = BluetoothManager.getInstance().connectedPeripherals
+        Utils.log("getDevices()", from: self.classForCoder, args: ["devices list": devices])
+        
+    }
+    
     
     func initBT(){
         Utils.log("initBT", args: nil)
         self.centralManager = CBCentralManager.init(delegate: self, queue: nil)
-        self.amazfitPeripheral = self.centralManager!.retrieveConnectedPeripherals(withServices: appDelegate.amazfitServices!.getCBUUIDs())[0]
+        self.amazfitPeripheral = self.centralManager!.retrieveConnectedPeripherals(withServices: AmazfitDefaultServices.getInstance().getCBUUIDs())[0]
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,5 +89,9 @@ class BTViewController: UIViewController, CBCentralManagerDelegate, CBPeripheral
         // Pass the selected object to the new view controller.
     }
     
+    func showDevicesView() {
+        let discoverDevicesTableViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "discoverDevices") as? DiscoverDevicesTableViewController
+        self.navigationController?.pushViewController(discoverDevicesTableViewControllerObj!, animated: true)
+    }
 
 }

@@ -12,6 +12,8 @@
 		7495D5DF1FEA464100391F9F /* DiscoverDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7495D5DE1FEA464100391F9F /* DiscoverDevicesTableViewController.swift */; };
 		7495D5E11FEA468500391F9F /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7495D5E01FEA468500391F9F /* BluetoothManager.swift */; };
 		7495D5E41FEA622200391F9F /* BluetoothDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7495D5E31FEA622200391F9F /* BluetoothDelegate.swift */; };
+		7495D5E61FEBA57F00391F9F /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7495D5E51FEBA57F00391F9F /* DeviceTableViewCell.swift */; };
+		7495D5E81FEBE48800391F9F /* DiscoveryCharacteristicsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7495D5E71FEBE48800391F9F /* DiscoveryCharacteristicsTableViewController.swift */; };
 		74A51B661FE28A28001BE70D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B651FE28A28001BE70D /* AppDelegate.swift */; };
 		74A51B681FE28A28001BE70D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A51B671FE28A28001BE70D /* ViewController.swift */; };
 		74A51B6B1FE28A28001BE70D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74A51B691FE28A28001BE70D /* Main.storyboard */; };
@@ -39,6 +41,8 @@
 		7495D5DE1FEA464100391F9F /* DiscoverDevicesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverDevicesTableViewController.swift; sourceTree = "<group>"; };
 		7495D5E01FEA468500391F9F /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		7495D5E31FEA622200391F9F /* BluetoothDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDelegate.swift; sourceTree = "<group>"; };
+		7495D5E51FEBA57F00391F9F /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
+		7495D5E71FEBE48800391F9F /* DiscoveryCharacteristicsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryCharacteristicsTableViewController.swift; sourceTree = "<group>"; };
 		74A51B621FE28A27001BE70D /* AmazfitBipControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmazfitBipControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74A51B651FE28A28001BE70D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74A51B671FE28A28001BE70D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +83,17 @@
 				7495D5E31FEA622200391F9F /* BluetoothDelegate.swift */,
 			);
 			path = protocols;
+			sourceTree = "<group>";
+		};
+		7495D5E91FEBE49200391F9F /* DiscoveryControllers */ = {
+			isa = PBXGroup;
+			children = (
+				7495D5DC1FEA45D400391F9F /* DiscoverServicesTableViewController.swift */,
+				7495D5DE1FEA464100391F9F /* DiscoverDevicesTableViewController.swift */,
+				7495D5E51FEBA57F00391F9F /* DeviceTableViewCell.swift */,
+				7495D5E71FEBE48800391F9F /* DiscoveryCharacteristicsTableViewController.swift */,
+			);
+			path = DiscoveryControllers;
 			sourceTree = "<group>";
 		};
 		74A51B591FE28A27001BE70D = {
@@ -129,6 +144,7 @@
 		74A51B7F1FE28F61001BE70D /* views */ = {
 			isa = PBXGroup;
 			children = (
+				7495D5E91FEBE49200391F9F /* DiscoveryControllers */,
 				74A51B671FE28A28001BE70D /* ViewController.swift */,
 				74A51BA71FE7884F001BE70D /* MessagingViewController.swift */,
 				74A51BA91FE79BE3001BE70D /* TabBarController.swift */,
@@ -136,8 +152,6 @@
 				74BCAFA51FE80F980078164C /* ServicesTableViewController.swift */,
 				74BCAFA71FE810280078164C /* NavigationViewController.swift */,
 				74BCAFA91FE81BAA0078164C /* ServicesTableViewCell.swift */,
-				7495D5DC1FEA45D400391F9F /* DiscoverServicesTableViewController.swift */,
-				7495D5DE1FEA464100391F9F /* DiscoverDevicesTableViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -243,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				74BCAFA41FE7FDD80078164C /* DefaultService.swift in Sources */,
+				7495D5E81FEBE48800391F9F /* DiscoveryCharacteristicsTableViewController.swift in Sources */,
 				74A51B9F1FE40CCF001BE70D /* GattService.swift in Sources */,
 				74A51B6E1FE28A28001BE70D /* AmazfitBipControl.xcdatamodeld in Sources */,
 				74BCAFA81FE810280078164C /* NavigationViewController.swift in Sources */,
@@ -255,6 +270,7 @@
 				74BCAFA61FE80F980078164C /* ServicesTableViewController.swift in Sources */,
 				74A51BA81FE7884F001BE70D /* MessagingViewController.swift in Sources */,
 				7495D5DD1FEA45D400391F9F /* DiscoverServicesTableViewController.swift in Sources */,
+				7495D5E61FEBA57F00391F9F /* DeviceTableViewCell.swift in Sources */,
 				74A51B681FE28A28001BE70D /* ViewController.swift in Sources */,
 				74BCAF9E1FE7DBB70078164C /* BTViewController.swift in Sources */,
 				74A51B7C1FE28B8D001BE70D /* AmazfitBipService.swift in Sources */,

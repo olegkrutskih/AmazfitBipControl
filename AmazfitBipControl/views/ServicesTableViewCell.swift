@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import CoreBluetooth
 
 class ServicesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var uuid: UILabel!
     @IBOutlet weak var isActive: UISwitch!
+    var service: CBService?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         isActive.isEnabled = false

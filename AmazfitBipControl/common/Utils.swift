@@ -15,6 +15,10 @@ class Utils {
         print(TAG + message + msgBuilder(args: args))
     }
     
+    static func log(_ message: String, from: AnyClass, args: [String: Any]?){
+        print(TAG + "logged from class: \(from), " + message + msgBuilder(args: args))
+    }
+    
     static func msgBuilder(args: [String: Any]?) -> String {
         var res = ""
         if args != nil && args!.count > 0 {

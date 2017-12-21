@@ -7,18 +7,30 @@
 //
 
 import UIKit
+import CoreBluetooth
 
 class DiscoverDevicesTableViewController: UITableViewController {
-
+    var devices = [CBPeripheral]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+//        tableView.rowHeight = 95
+        tableView.rowHeight = 95
+        tableView.estimatedRowHeight = 117
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getDevices()
+    }
+    
+    func getDevices() {
+        Utils.log("getDevices", args: nil)
+        self.devices = BluetoothManager.getInstance().connectedPeripherals!
+        Utils.log("getDevices()", from: self.classForCoder, args: ["devices list": devices])
+        tableView.reloadData()
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -29,23 +41,30 @@ class DiscoverDevicesTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return devices.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "deviceCell", for: indexPath) as! DeviceTableViewCell
+        cell.deviceImage.frame = CGRect.init(x: 0, y: 0, width: 95, height: 95)
+        if self.devices[indexPath.row].name == AmazfitDefaultServices.amazfitDeviceName {
+            cell.deviceImage.image = #imageLiteral(resourceName: "amazfit")
+        } else {
+            cell.deviceImage.image = #imageLiteral(resourceName: "UnknownDevice")
+        }
+        cell.deviceName.text = devices[indexPath.row].name
+        cell.deviceUUID.text = devices[indexPath.row].identifier.uuidString
+        cell.device = devices[indexPath.row]
+        
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.
@@ -82,14 +101,17 @@ class DiscoverDevicesTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let destView = segue.destination as! DiscoverServicesTableViewController
+        let cell = sender as! DeviceTableViewCell
+        destView.device = cell.device
     }
-    */
+ 
 
 }

@@ -11,13 +11,33 @@ import Foundation
 import CoreBluetooth
 import UIKit
 
-class AmazfitDefaultCharacteristic {
+class AmazfitDefaultCharacteristic: NSObject {
     
     private let BASE_UUID = "0000%s-0000-1000-8000-00805f9b34fb"
     var defaultCharacteristics = [String: DefaultCharacteristic]()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    init() {
+    var _amazfitCharacteristic: AmazfitDefaultCharacteristic?
+    static private var instance : AmazfitDefaultCharacteristic {
+        return sharedInstance
+    }
+    private static let sharedInstance = AmazfitDefaultCharacteristic()
+    
+    private override init() {
+        super.init()
+        initAmazfitDefaultCharacteristic()
+    }
+    
+    func initAmazfitDefaultCharacteristic() {
+        fillDefaultData()
+    }
+    
+    static func getInstance() -> AmazfitDefaultCharacteristic {
+        return instance
+    }
+    
+    
+    func fillDefaultData() {
         Utils.log("AmazfitDefaultCharacteristic.init", args: nil)
         
         // Mi

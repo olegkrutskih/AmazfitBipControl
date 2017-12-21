@@ -35,7 +35,7 @@ class ServicesTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.defaultServices = appDelegate.amazfitServices!.defaultServices
+        self.defaultServices = AmazfitDefaultServices.getInstance().defaultServices
         self.defaultServicesNumberedArray.removeAll()
         self.defaultServicesNumberedArray.append(contentsOf: self.defaultServices.keys)
         
@@ -76,13 +76,13 @@ class ServicesTableViewController: UITableViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         appDelegate.addServices(services: self.defaultServices)
-        appDelegate.amazfitServices!.syncWithDB()
+        AmazfitDefaultServices.getInstance().syncWithDB()
         //self.defaultServices = appDelegate.amazfitServices!.services
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "serviceCell", for: indexPath) as! ServicesTableViewCell
-        cell.name!.text = self.appDelegate.amazfitServices!.getHumanNameByValue(val: self.defaultServices[self.defaultServicesNumberedArray[indexPath.row]]!.value) // self.defaultServicesNumberedArray[indexPath.row]
+        cell.name!.text = AmazfitDefaultServices.getInstance().getHumanNameByValue(val: self.defaultServices[self.defaultServicesNumberedArray[indexPath.row]]!.value) // self.defaultServicesNumberedArray[indexPath.row]
         cell.uuid!.text = self.defaultServices[self.defaultServicesNumberedArray[indexPath.row]]!.value.uuidString
         let isActive = self.defaultServices[self.defaultServicesNumberedArray[indexPath.row]]!.isActive
         cell.isActive.setOn(isActive, animated: false)
