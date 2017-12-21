@@ -15,7 +15,7 @@ class ServicesTableViewCell: UITableViewCell {
     @IBOutlet weak var uuid: UILabel!
     @IBOutlet weak var isActive: UISwitch!
     var service: CBService?
-    
+    var characteristic: CBCharacteristic?
     override func awakeFromNib() {
         super.awakeFromNib()
         isActive.isEnabled = false

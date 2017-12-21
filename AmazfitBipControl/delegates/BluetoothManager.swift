@@ -136,6 +136,13 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         bluetoothDelegate?.didDiscoverCharacteritics?(service)
     }
     
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverDescriptorsFor characteristic: CBCharacteristic, error: Error?) {
+        //Utils.log("didDiscoverDescriptorsFor event", from: classForCoder, args: ["characteristic": characteristic, "descriptor": (characteristic.descriptors)!])
+        bluetoothDelegate?.didDiscoverDescriptors?(characteristic)
+    }
     
-    
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        //Utils.log("didUpdateValueFor event", from: classForCoder, args: ["characteristic": characteristic, "value": (characteristic.value)!])
+        bluetoothDelegate?.didReadValueForCharacteristic?(characteristic)
+    }
 }

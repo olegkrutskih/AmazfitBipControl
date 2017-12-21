@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24688BA11FE9CDB70068DBC2 /* ListenCharacteristicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24688BA01FE9CDB70068DBC2 /* ListenCharacteristicViewController.swift */; };
 		24F103241FE73699004B4AE3 /* AmazfitCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F103231FE73699004B4AE3 /* AmazfitCharacteristic.swift */; };
 		7495D5DD1FEA45D400391F9F /* DiscoverServicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7495D5DC1FEA45D400391F9F /* DiscoverServicesTableViewController.swift */; };
 		7495D5DF1FEA464100391F9F /* DiscoverDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7495D5DE1FEA464100391F9F /* DiscoverDevicesTableViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24688BA01FE9CDB70068DBC2 /* ListenCharacteristicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenCharacteristicViewController.swift; sourceTree = "<group>"; };
 		24F103231FE73699004B4AE3 /* AmazfitCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazfitCharacteristic.swift; sourceTree = "<group>"; };
 		7495D5DC1FEA45D400391F9F /* DiscoverServicesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverServicesTableViewController.swift; sourceTree = "<group>"; };
 		7495D5DE1FEA464100391F9F /* DiscoverDevicesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverDevicesTableViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24F103251FE9C475004B4AE3 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				74A51B6F1FE28A28001BE70D /* Assets.xcassets */,
+				74A51BA21FE41384001BE70D /* Media.xcassets */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		24F103261FE9C488004B4AE3 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				74A51B691FE28A28001BE70D /* Main.storyboard */,
+				74A51B711FE28A28001BE70D /* LaunchScreen.storyboard */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		24F103271FE9C49A004B4AE3 /* db */ = {
+			isa = PBXGroup;
+			children = (
+				74A51B6C1FE28A28001BE70D /* AmazfitBipControl.xcdatamodeld */,
+			);
+			path = db;
+			sourceTree = "<group>";
+		};
 		7495D5E21FEA620B00391F9F /* protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,18 +143,16 @@
 		74A51B641FE28A27001BE70D /* AmazfitBipControl */ = {
 			isa = PBXGroup;
 			children = (
+				24F103271FE9C49A004B4AE3 /* db */,
+				24F103251FE9C475004B4AE3 /* assets */,
 				7495D5E21FEA620B00391F9F /* protocols */,
 				74A51BA41FE786EF001BE70D /* delegates */,
-				74A51BA21FE41384001BE70D /* Media.xcassets */,
 				74A51B931FE3D9C2001BE70D /* common */,
 				74A51B821FE2909B001BE70D /* model */,
 				74A51B7F1FE28F61001BE70D /* views */,
 				74A51B7A1FE28B51001BE70D /* devices */,
-				74A51B691FE28A28001BE70D /* Main.storyboard */,
-				74A51B6F1FE28A28001BE70D /* Assets.xcassets */,
-				74A51B711FE28A28001BE70D /* LaunchScreen.storyboard */,
+				24F103261FE9C488004B4AE3 /* ui */,
 				74A51B741FE28A28001BE70D /* Info.plist */,
-				74A51B6C1FE28A28001BE70D /* AmazfitBipControl.xcdatamodeld */,
 			);
 			path = AmazfitBipControl;
 			sourceTree = "<group>";
@@ -152,6 +178,7 @@
 				74BCAFA51FE80F980078164C /* ServicesTableViewController.swift */,
 				74BCAFA71FE810280078164C /* NavigationViewController.swift */,
 				74BCAFA91FE81BAA0078164C /* ServicesTableViewCell.swift */,
+				24688BA01FE9CDB70068DBC2 /* ListenCharacteristicViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -264,6 +291,7 @@
 				7495D5E11FEA468500391F9F /* BluetoothManager.swift in Sources */,
 				7495D5DF1FEA464100391F9F /* DiscoverDevicesTableViewController.swift in Sources */,
 				74A51BA11FE40EC0001BE70D /* GattCharacteristic.swift in Sources */,
+				24688BA11FE9CDB70068DBC2 /* ListenCharacteristicViewController.swift in Sources */,
 				7495D5E41FEA622200391F9F /* BluetoothDelegate.swift in Sources */,
 				74A51BAA1FE79BE3001BE70D /* TabBarController.swift in Sources */,
 				74BCAFAA1FE81BAA0078164C /* ServicesTableViewCell.swift in Sources */,

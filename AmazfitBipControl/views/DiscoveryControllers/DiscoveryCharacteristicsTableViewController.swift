@@ -14,101 +14,61 @@ class DiscoveryCharacteristicsTableViewController: UITableViewController, Blueto
     var characteristics = [CBCharacteristic]()
     fileprivate let bluetoothManager = BluetoothManager.getInstance()
     var activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-//    var refreshCtrl: UIRefreshControl = {
-//        let refreshControl = UIRefreshControl()
-//        refreshControl.addTarget(self, action:
-//            #selector(DiscoveryCharacteristicsTableViewController.handleRefresh(_:)),
-//                                 for: UIControlEvents.valueChanged)
-//        refreshControl.tintColor = UIColor.red
-//
-//        return refreshControl
-//    }()
-
-    
-//    func handleRefresh(_ refreshControl: UIRefreshControl) {
-//
-//        let newHotel = Hotels(name: "Montage Laguna Beach", place:
-//            "California south")
-//        hotels.append(newHotel)
-//
-//        hotels.sort() { $0.name < $0.place }
-//
-//        self.tableView.reloadData()
-//        refreshControl.endRefreshing()
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bluetoothManager.bluetoothDelegate = self
-        
-        //tableView.refreshControl?.addTarget(self, action: #selector(DiscoveryCharacteristicsTableViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl!.addTarget(self, action:
-            #selector(DiscoveryCharacteristicsTableViewController.handleRefresh(_:)),
-                                            for: UIControlEvents.valueChanged)
-        tableView.refreshControl!.tintColor = UIColor.blue
-//        tableView.refreshControl!.beginRefreshing()
-//        tableView.setContentOffset(CGPoint(x: 0, y: -tableView.refreshControl!.frame.size.height), animated: true)
-        
+        initAll()
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+
+    func initAll(){
+        self.bluetoothManager.bluetoothDelegate = self
+        self.tableView.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl!.addTarget(self, action: #selector(DiscoveryCharacteristicsTableViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+        self.tableView.refreshControl!.tintColor = UIColor.blue
+    }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         if self.service != nil {
             self.bluetoothManager.services = [self.service!]
         }
-        
-//        let dispatchQueue = DispatchQueue(label: "Dispatch Queue", attributes: [], target: nil)
-//        dispatchQueue.async {
-//            Thread.sleep(forTimeInterval: 3)
-//            self.tableView.refreshControl!.endRefreshing()
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //willTableReloadStart()
-
+        willTableLoadStart()
     }
     
-//    func didConnectedPeripheral(_ connectedPeripheral: CBPeripheral) {
-//        Utils.log("didConnectedPeripheral", from: classForCoder, args: ["device": connectedPeripheral])
-//        if let srvs = connectedPeripheral.services {
-//            self.services.removeAll()
-//            self.services += srvs
-//        }
-//        tableView.reloadData()
-//    }
-    
-//    func willTableReloadStart() {
-//        tableView.backgroundView = activityIndicatorView
-//
-//        let dispatchQueue = DispatchQueue(label: "Dispatch Queue", attributes: [], target: nil)
-//        tableView.separatorStyle = .none
-//
-//        activityIndicatorView.startAnimating()
-//
-//        dispatchQueue.async {
+    func willTableLoadStart() {
+        self.tableView.backgroundView = activityIndicatorView
+        let dispatchQueue = DispatchQueue(label: "Dispatch Queue", attributes: [], target: nil)
+        self.tableView.separatorStyle = .none
+        self.activityIndicatorView.startAnimating()
+        dispatchQueue.async {
 //            Thread.sleep(forTimeInterval: 3)
-//            OperationQueue.main.addOperation() {
-//                if self.service != nil {
-//                    self.bluetoothManager.services = [self.service!]
-//                }
-//
-//            }
-//        }
-//
-//    }
+            OperationQueue.main.addOperation() {
+                if self.service != nil {
+                    self.bluetoothManager.services = [self.service!]
+                }
+            }
+        }
+    }
     
-//    func didTableReloadEnded() {
-//        self.tableView.separatorStyle = .singleLine
-//        self.activityIndicatorView.stopAnimating()
-//        tableView.reloadData()
-////        tableView
-//    }
+    func didTableLoadEnded() {
+        tableView.reloadData()
+        if !self.tableView.refreshControl!.isRefreshing {
+            Utils.log("didTableLoadEnded", from: classForCoder, args: ["load": "first"])
+            self.tableView.separatorStyle = .singleLine
+            self.activityIndicatorView.stopAnimating()
+        } else {
+            Utils.log("didTableLoadEnded", from: classForCoder, args: ["load": "second"])
+            tableView.refreshControl!.endRefreshing()
+        }
+    }
     
     
     func didDiscoverCharacteritics(_ service: CBService) {
@@ -117,9 +77,7 @@ class DiscoveryCharacteristicsTableViewController: UITableViewController, Blueto
             self.characteristics.removeAll()
             self.characteristics += chars
         }
-//        didTableReloadEnded()
-        tableView.reloadData()
-        tableView.refreshControl!.endRefreshing()
+        didTableLoadEnded()
     }
     
 //    func didDiscoverServices(_ peripheral: CBPeripheral) {
@@ -146,13 +104,35 @@ class DiscoveryCharacteristicsTableViewController: UITableViewController, Blueto
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return self.characteristics.count
+    }    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! ServicesTableViewCell
+        self.service!.peripheral.discoverDescriptors(for: cell.characteristic!)
+        self.service!.peripheral.readValue(for: cell.characteristic!)
     }
     
+    func didDiscoverDescriptors(_ characteristic: CBCharacteristic) {
+        Utils.log("didDiscoverDescriptors event", from: classForCoder, args: ["characteristic": characteristic, "value": characteristic.descriptors])
+        if let descriptors = characteristic.descriptors {
+            for descr in descriptors {
+                print("descriptor: \(descr.uuid.uuidString)")
+                
+            }
+        }
+    }
+    
+    func didReadValueForCharacteristic(_ characteristic: CBCharacteristic) {
+        if characteristic.value != nil && characteristic.value!.count != 0 {
+            Utils.log("didReadValueForCharacteristic event", from: classForCoder, args: ["characteristic": characteristic, "value": String.init(data: characteristic.value!, encoding: String.Encoding.utf8)])
+        } 
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "characteristicCell", for: indexPath) as! ServicesTableViewCell
         cell.name!.text = AmazfitDefaultCharacteristic.getInstance().getHumanNameByValue(val: self.characteristics[indexPath.row].uuid)
         cell.uuid!.text = self.characteristics[indexPath.row].uuid.uuidString
+        cell.characteristic = self.characteristics[indexPath.row]
         //        let isActive = self.services[indexPath.row].isActive
         //      cell.isActive.setOn(isActive, animated: false)
         return cell
