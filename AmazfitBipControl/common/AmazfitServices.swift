@@ -48,9 +48,9 @@ class AmazfitDefaultServices: NSObject {
         self.defaultServices["UUID_SERVICE_MIBAND2_SERVICE"] = DefaultService(value: getUUIDFromBase(pieceUUID: "FEE1"), isActive: false, humanName: "UUID_SERVICE_MIBAND2_SERVICE")
         
         // Proprietary Xiaomi services
-        self.defaultServices["UUID_SERVICE_XIAOMI_MILI"] = DefaultService(value: getXiaomiUUIDFromBase(pieceUUID: "FEE0"), isActive: false, humanName: "(Propr: Xiaomi MiLi Service)")
-        self.defaultServices["UUID_SERVICE_XIAOMI_FIRMWARE_SERVICE"] = DefaultService(value: getXiaomiUUIDFromBase(pieceUUID: "1530"), isActive: false, humanName: "(Propr: Xiaomi Weight Service)")
-        self.defaultServices["UUID_SERVICE_XIAOMI_HPLUS"] = DefaultService(value: CBUUID.init(string: "14701820-620a-3973-7c78-9cfff0876abd"), isActive: false, humanName: "(Propr: HPLUS Service)")
+        self.defaultServices["UUID_SERVICE_XIAOMI_MILI"] = DefaultService(value: getXiaomiUUIDFromBase(pieceUUID: "FEE0"), isActive: false, humanName: "Xiaomi MiLi Service")
+        self.defaultServices["UUID_SERVICE_XIAOMI_FIRMWARE_SERVICE"] = DefaultService(value: getXiaomiUUIDFromBase(pieceUUID: "1530"), isActive: false, humanName: "Xiaomi Firmware Service")
+        self.defaultServices["UUID_SERVICE_XIAOMI_HPLUS"] = DefaultService(value: CBUUID.init(string: "14701820-620a-3973-7c78-9cfff0876abd"), isActive: false, humanName: "Xiaomi HPLUS Service")
 
         // Standart services
         self.defaultServices["UUID_SERVICE_ALERT_NOTIFICATION"] = DefaultService(value: getUUIDFromBase(pieceUUID: "1811"), isActive: false, humanName: "Alert Notification Service")
@@ -95,6 +95,10 @@ class AmazfitDefaultServices: NSObject {
             result.append(defaultService.value.value)
         }
         return result
+    }
+    
+    public func getCBUUID(_ uuidString: String) -> CBUUID {
+        return self.defaultServices.first(where: {$0.key == uuidString})!.value.value
     }
     
     public func getHumanNameByValue(val: CBUUID) -> String {

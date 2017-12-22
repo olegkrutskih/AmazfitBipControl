@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import CoreBluetooth
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,7 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        Utils.log("AppDelegate.amazfitServices", args: self.amazfitServices!.services)
         refreshMessages(callback: nil)
         refreshServices(callback: nil)
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: tt(t:e:))
         return true
+    }
+    
+    func tt(t: Bool, e: Error?) {
+        
     }
     
     func refreshMessages(callback: (()->Void)?){

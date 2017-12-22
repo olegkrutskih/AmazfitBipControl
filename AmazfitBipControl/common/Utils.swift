@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import UserNotifications
 
 class Utils {
     public static var TAG = "<< AmazfitLogger::"
+    
     
     static func log(_ message: String, args: [String: Any]?){
         print(TAG + message + msgBuilder(args: args))
@@ -30,5 +32,26 @@ class Utils {
         }
         res += " >>"
         return res
+    }
+    
+    static func letsNotify(message: String, value: Int){
+        let content = UNMutableNotificationContent()
+        content.badge = 1
+        
+        content.title = NSString.localizedUserNotificationString(forKey: "ЗБС!", arguments: nil)
+        content.body = NSString.localizedUserNotificationString(forKey: message, arguments: nil)
+        content.categoryIdentifier = "actionCategory"
+        content.sound = UNNotificationSound.default()
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3.0, repeats: false)
+        
+        // Create the request object.
+        let request = UNNotificationRequest(identifier: "zbs", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error:Error?) in
+            if error != nil {
+                self.log("Error on show notification", args: ["descr": error!])
+            }
+            
+        })
     }
 }

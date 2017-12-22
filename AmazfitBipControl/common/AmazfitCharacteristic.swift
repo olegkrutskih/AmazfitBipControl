@@ -41,19 +41,22 @@ class AmazfitDefaultCharacteristic: NSObject {
         Utils.log("AmazfitDefaultCharacteristic.init", args: nil)
         
         // Mi
-        self.defaultCharacteristics["UUID_CHARACTERISTIC_XIAOMI_HPLUS_CONTROL"] = DefaultCharacteristic(value: CBUUID.init(string: "14702856-620a-3973-7c78-9cfff0876abd"), isActive: false, humanName: "(Propr: HPLUS Control)")
-        self.defaultCharacteristics["UUID_CHARACTERISTIC_XIAOMI_HPLUS_MEASUREMENT"] = DefaultCharacteristic(value: CBUUID.init(string: "14702853-620a-3973-7c78-9cfff0876abd"), isActive: false, humanName: "(Propr: HPLUS Measurements)")
+        self.defaultCharacteristics["UUID_CHARACTERISTIC_XIAOMI_HPLUS_CONTROL"] = DefaultCharacteristic(value: CBUUID.init(string: "14702856-620a-3973-7c78-9cfff0876abd"), isActive: false, humanName: "Xiaomi HPLUS Control")
+        self.defaultCharacteristics["UUID_CHARACTERISTIC_XIAOMI_HPLUS_MEASUREMENT"] = DefaultCharacteristic(value: CBUUID.init(string: "14702853-620a-3973-7c78-9cfff0876abd"), isActive: false, humanName: "Xiaomi HPLUS Measurements")
         
         // Mi
-        self.defaultCharacteristics["UUID_BATT_INFO"] = DefaultCharacteristic(value: CBUUID.init(string: "00000006-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_BATT_INFO")
-        self.defaultCharacteristics["UUID_1"] = DefaultCharacteristic(value: CBUUID.init(string: "00000001-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_1")
-        self.defaultCharacteristics["UUID_2"] = DefaultCharacteristic(value: CBUUID.init(string: "00000002-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_2")
-        self.defaultCharacteristics["UUID_CONFIG"] = DefaultCharacteristic(value: CBUUID.init(string: "00000003-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_CONFIG")
-        self.defaultCharacteristics["UUID_4"] = DefaultCharacteristic(value: CBUUID.init(string: "00000004-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_4")
-        self.defaultCharacteristics["UUID_5"] = DefaultCharacteristic(value: CBUUID.init(string: "00000005-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_5")
-        self.defaultCharacteristics["UUID_STEPS"] = DefaultCharacteristic(value: CBUUID.init(string: "00000007-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_STEPS")
+        self.defaultCharacteristics["UUID_UNKNOWN_CHARACTERISTIC0"] = DefaultCharacteristic(value: CBUUID.init(string: "00000000-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_UNKNOWN_CHARACTERISTIC0")
+        self.defaultCharacteristics["UUID_UNKNOWN_CHARACTERISTIC1"] = DefaultCharacteristic(value: CBUUID.init(string: "00000001-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_UNKNOWN_CHARACTERISTIC1")
+        self.defaultCharacteristics["UUID_UNKNOWN_CHARACTERISTIC2"] = DefaultCharacteristic(value: CBUUID.init(string: "00000002-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_UNKNOWN_CHARACTERISTIC2")
+        
+        self.defaultCharacteristics["UUID_CHARACTERISTIC_3_CONFIGURATION"] = DefaultCharacteristic(value: CBUUID.init(string: "00000003-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_CHARACTERISTIC_3_CONFIGURATION")
+        self.defaultCharacteristics["UUID_UNKNOWN_CHARACTERISTIC4"] = DefaultCharacteristic(value: CBUUID.init(string: "00000004-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_UNKNOWN_CHARACTERISTIC4")
+        self.defaultCharacteristics["UUID_CHARACTERISTIC_5_ACTIVITY_DATA"] = DefaultCharacteristic(value: CBUUID.init(string: "00000005-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_CHARACTERISTIC_5_ACTIVITY_DATA")
+        self.defaultCharacteristics["UUID_CHARACTERISTIC_6_BATTERY_INFO"] = DefaultCharacteristic(value: CBUUID.init(string: "00000006-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_CHARACTERISTIC_6_BATTERY_INFO")
+        self.defaultCharacteristics["UUID_CHARACTERISTIC_7_REALTIME_STEPS"] = DefaultCharacteristic(value: CBUUID.init(string: "00000007-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_CHARACTERISTIC_7_REALTIME_STEPS")
         self.defaultCharacteristics["UUID_8"] = DefaultCharacteristic(value: CBUUID.init(string: "00000008-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_8")
-        self.defaultCharacteristics["UUID_9"] = DefaultCharacteristic(value: CBUUID.init(string: "00000010-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_9")
+        self.defaultCharacteristics["UUID_CHARACTERISTIC_AUTH"] = DefaultCharacteristic(value: CBUUID.init(string: "00000009-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_CHARACTERISTIC_AUTH")
+        self.defaultCharacteristics["UUID_CHARACTERISTIC_DEVICEEVENT"] = DefaultCharacteristic(value: CBUUID.init(string: "00000010-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_CHARACTERISTIC_DEVICEEVENT")
         self.defaultCharacteristics["UUID_10"] = DefaultCharacteristic(value: CBUUID.init(string: "0000000E-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_10")
         self.defaultCharacteristics["UUID_11"] = DefaultCharacteristic(value: CBUUID.init(string: "00000020-0000-3512-2118-0009AF100700"), isActive: false, humanName: "UUID_11")
         self.defaultCharacteristics["UUID_CHARACTERISTIC_WEATHER"] = DefaultCharacteristic(value: CBUUID.init(string: "0000000e-0000-3512-2118-0009af100700"), isActive: false, humanName: "UUID_CHARACTERISTIC_WEATHER")
@@ -239,6 +242,10 @@ class AmazfitDefaultCharacteristic: NSObject {
         self.defaultCharacteristics["UUID_CHARACTERISTIC_WIND_CHILL"] = DefaultCharacteristic(value: getUUIDFromBase(pieceUUID: "2A79"), isActive: false, humanName: "UUID_CHARACTERISTIC_WIND_CHILL")
         
         //syncWithDB()
+    }
+    
+    public func getCBUUID(_ uuidString: String) -> CBUUID {
+        return self.defaultCharacteristics.first(where: {$0.key == uuidString})!.value.value
     }
     
     public func getHumanNameByValue(val: CBUUID) -> String {

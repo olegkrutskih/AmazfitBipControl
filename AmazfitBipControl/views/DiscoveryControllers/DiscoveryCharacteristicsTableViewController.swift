@@ -8,8 +8,10 @@
 
 import UIKit
 import CoreBluetooth
+import UserNotifications
 
-class DiscoveryCharacteristicsTableViewController: UITableViewController, BluetoothDelegate {
+
+class DiscoveryCharacteristicsTableViewController: UITableViewController, BluetoothDelegate, UNUserNotificationCenterDelegate {
     var service: CBService?
     var characteristics = [CBCharacteristic]()
     fileprivate let bluetoothManager = BluetoothManager.getInstance()
@@ -18,7 +20,7 @@ class DiscoveryCharacteristicsTableViewController: UITableViewController, Blueto
     override func viewDidLoad() {
         super.viewDidLoad()
         initAll()
-
+        UNUserNotificationCenter.current().delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -76,6 +78,7 @@ class DiscoveryCharacteristicsTableViewController: UITableViewController, Blueto
         if let chars = service.characteristics {
             self.characteristics.removeAll()
             self.characteristics += chars
+
         }
         didTableLoadEnded()
     }
@@ -110,6 +113,7 @@ class DiscoveryCharacteristicsTableViewController: UITableViewController, Blueto
         let cell = tableView.cellForRow(at: indexPath) as! ServicesTableViewCell
         self.service!.peripheral.discoverDescriptors(for: cell.characteristic!)
         self.service!.peripheral.readValue(for: cell.characteristic!)
+        self.bluetoothManager.peripferal!.setNotifyValue(true, for: cell.characteristic!)
     }
     
     func didDiscoverDescriptors(_ characteristic: CBCharacteristic) {
@@ -124,8 +128,24 @@ class DiscoveryCharacteristicsTableViewController: UITableViewController, Blueto
     
     func didReadValueForCharacteristic(_ characteristic: CBCharacteristic) {
         if characteristic.value != nil && characteristic.value!.count != 0 {
-            Utils.log("didReadValueForCharacteristic event", from: classForCoder, args: ["characteristic": characteristic, "value": String.init(data: characteristic.value!, encoding: String.Encoding.utf8)])
-        } 
+            switch characteristic.uuid {
+                case AmazfitBipService.UUID_STEPS:
+                    let steps = AmazfitNotifyReaderSupport.readStepsValue(data: characteristic.value)
+                    Utils.letsNotify(message: "Current steps value: \(steps)", value: 0)
+                case AmazfitBipService.UUID_BATT_INFO:
+                    let batt = AmazfitNotifyReaderSupport.readBatteryLevel(data: characteristic.value)
+                    Utils.letsNotify(message: "Current battery level: \(batt)", value: 0)
+                case AmazfitDefaultCharacteristic.getInstance().getCBUUID("UUID_CHARACTERISTIC_DEVICEEVENT"):
+                    let event = AmazfitNotifyReaderSupport.readDeviceEvent(data: characteristic.value)
+                    Utils.letsNotify(message: "Current event: \(event)", value: 0)
+                default:
+                    Utils.log("didReadValueForCharacteristic event", from: classForCoder, args: ["characteristic": characteristic, "value": String.init(data: characteristic.value!, encoding: String.Encoding.utf8)])
+            }
+        }
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        //completionHandler([.alert, .sound])
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
