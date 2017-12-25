@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		24688BA11FE9CDB70068DBC2 /* ListenCharacteristicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24688BA01FE9CDB70068DBC2 /* ListenCharacteristicViewController.swift */; };
 		24F103241FE73699004B4AE3 /* AmazfitCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F103231FE73699004B4AE3 /* AmazfitCharacteristic.swift */; };
+		7402A0151FF0DFE20071B27D /* DefinesANCS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402A0141FF0DFE20071B27D /* DefinesANCS.swift */; };
+		7402A0171FF0E17E0071B27D /* PeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402A0161FF0E17E0071B27D /* PeripheralManager.swift */; };
+		7402A0191FF0FE560071B27D /* PeripheralManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402A0181FF0FE560071B27D /* PeripheralManagerDelegate.swift */; };
+		7402A01B1FF1033B0071B27D /* PeripheralManagerDelegateFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402A01A1FF1033B0071B27D /* PeripheralManagerDelegateFlags.swift */; };
 		7453AC831FED22CD00531A2B /* AmazfitNotifyReaderSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7453AC821FED22CD00531A2B /* AmazfitNotifyReaderSupport.swift */; };
 		7453AC851FED3EEE00531A2B /* AmazfitDeviceEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7453AC841FED3EEE00531A2B /* AmazfitDeviceEvent.swift */; };
 		7453AC871FED4BA600531A2B /* PlayerActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7453AC861FED4BA600531A2B /* PlayerActions.swift */; };
@@ -42,6 +46,10 @@
 /* Begin PBXFileReference section */
 		24688BA01FE9CDB70068DBC2 /* ListenCharacteristicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenCharacteristicViewController.swift; sourceTree = "<group>"; };
 		24F103231FE73699004B4AE3 /* AmazfitCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazfitCharacteristic.swift; sourceTree = "<group>"; };
+		7402A0141FF0DFE20071B27D /* DefinesANCS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinesANCS.swift; sourceTree = "<group>"; };
+		7402A0161FF0E17E0071B27D /* PeripheralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralManager.swift; sourceTree = "<group>"; };
+		7402A0181FF0FE560071B27D /* PeripheralManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralManagerDelegate.swift; sourceTree = "<group>"; };
+		7402A01A1FF1033B0071B27D /* PeripheralManagerDelegateFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralManagerDelegateFlags.swift; sourceTree = "<group>"; };
 		7453AC821FED22CD00531A2B /* AmazfitNotifyReaderSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazfitNotifyReaderSupport.swift; sourceTree = "<group>"; };
 		7453AC841FED3EEE00531A2B /* AmazfitDeviceEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazfitDeviceEvent.swift; sourceTree = "<group>"; };
 		7453AC861FED4BA600531A2B /* PlayerActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerActions.swift; sourceTree = "<group>"; };
@@ -115,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				7495D5E31FEA622200391F9F /* BluetoothDelegate.swift */,
+				7402A0181FF0FE560071B27D /* PeripheralManagerDelegate.swift */,
 			);
 			path = protocols;
 			sourceTree = "<group>";
@@ -195,6 +204,7 @@
 				74BCAFA31FE7FDD80078164C /* DefaultService.swift */,
 				7453AC841FED3EEE00531A2B /* AmazfitDeviceEvent.swift */,
 				7453AC861FED4BA600531A2B /* PlayerActions.swift */,
+				7402A01A1FF1033B0071B27D /* PeripheralManagerDelegateFlags.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -206,6 +216,7 @@
 				74BCAFA11FE7F2D50078164C /* AmazfitServices.swift */,
 				24F103231FE73699004B4AE3 /* AmazfitCharacteristic.swift */,
 				7453AC821FED22CD00531A2B /* AmazfitNotifyReaderSupport.swift */,
+				7402A0141FF0DFE20071B27D /* DefinesANCS.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -215,6 +226,7 @@
 			children = (
 				74A51B651FE28A28001BE70D /* AppDelegate.swift */,
 				7495D5E01FEA468500391F9F /* BluetoothManager.swift */,
+				7402A0161FF0E17E0071B27D /* PeripheralManager.swift */,
 			);
 			path = delegates;
 			sourceTree = "<group>";
@@ -252,6 +264,11 @@
 					74A51B611FE28A27001BE70D = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -294,9 +311,11 @@
 			files = (
 				74BCAFA41FE7FDD80078164C /* DefaultService.swift in Sources */,
 				7495D5E81FEBE48800391F9F /* DiscoveryCharacteristicsTableViewController.swift in Sources */,
+				7402A01B1FF1033B0071B27D /* PeripheralManagerDelegateFlags.swift in Sources */,
 				74A51B9F1FE40CCF001BE70D /* GattService.swift in Sources */,
 				74A51B6E1FE28A28001BE70D /* AmazfitBipControl.xcdatamodeld in Sources */,
 				74BCAFA81FE810280078164C /* NavigationViewController.swift in Sources */,
+				7402A0171FF0E17E0071B27D /* PeripheralManager.swift in Sources */,
 				7495D5E11FEA468500391F9F /* BluetoothManager.swift in Sources */,
 				7495D5DF1FEA464100391F9F /* DiscoverDevicesTableViewController.swift in Sources */,
 				74A51BA11FE40EC0001BE70D /* GattCharacteristic.swift in Sources */,
@@ -306,7 +325,9 @@
 				74A51BAA1FE79BE3001BE70D /* TabBarController.swift in Sources */,
 				74BCAFAA1FE81BAA0078164C /* ServicesTableViewCell.swift in Sources */,
 				74BCAFA61FE80F980078164C /* ServicesTableViewController.swift in Sources */,
+				7402A0151FF0DFE20071B27D /* DefinesANCS.swift in Sources */,
 				74A51BA81FE7884F001BE70D /* MessagingViewController.swift in Sources */,
+				7402A0191FF0FE560071B27D /* PeripheralManagerDelegate.swift in Sources */,
 				7495D5DD1FEA45D400391F9F /* DiscoverServicesTableViewController.swift in Sources */,
 				7495D5E61FEBA57F00391F9F /* DeviceTableViewCell.swift in Sources */,
 				7453AC851FED3EEE00531A2B /* AmazfitDeviceEvent.swift in Sources */,

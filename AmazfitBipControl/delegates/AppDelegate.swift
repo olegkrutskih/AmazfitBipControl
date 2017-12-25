@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var messagesArray = [String]()
     var defaultServices = [String: DefaultService]()
     var defaultCharacteristics = [String: DefaultCharacteristic]()
+    var peripheralManager: PeripheralManager?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Utils.log("didFinishLaunchingWithOptions", args: nil)
@@ -26,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         refreshMessages(callback: nil)
         refreshServices(callback: nil)
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: tt(t:e:))
+
         return true
     }
     
