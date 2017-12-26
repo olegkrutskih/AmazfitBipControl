@@ -170,10 +170,49 @@
                             <outlet property="delegate" destination="Skj-KP-Ktl" id="pOg-1D-dwd"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="BYi-ye-vYw">
+                        <barButtonItem key="rightBarButtonItem" title="Interface" id="uZg-ep-UsN">
+                            <connections>
+                                <segue destination="SUb-tK-6lm" kind="show" id="YYQ-9P-YpM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DcH-hu-Pkg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2834" y="292"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="jsg-zB-rzv">
+            <objects>
+                <viewController id="SUb-tK-6lm" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="awo-gx-cFl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="g9b-Wc-w4s">
+                                <rect key="frame" x="16" y="64" width="343" height="554"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1u-Kb-sWz">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="554"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="g9b-Wc-w4s" firstAttribute="leading" secondItem="YIY-LR-DVZ" secondAttribute="leading" constant="16" id="AOT-XB-PM6"/>
+                            <constraint firstItem="YIY-LR-DVZ" firstAttribute="trailing" secondItem="g9b-Wc-w4s" secondAttribute="trailing" constant="16" id="Yb8-wZ-KGa"/>
+                            <constraint firstItem="YIY-LR-DVZ" firstAttribute="bottom" secondItem="g9b-Wc-w4s" secondAttribute="bottom" id="jUF-3I-Lnz"/>
+                            <constraint firstItem="g9b-Wc-w4s" firstAttribute="top" secondItem="YIY-LR-DVZ" secondAttribute="top" id="xOI-Vq-yjB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YIY-LR-DVZ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qEn-3w-83N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3568.8000000000002" y="-429.53523238380814"/>
         </scene>
         <!--Discover Characteristics Table View Controller-->
         <scene sceneID="usz-wo-86R">

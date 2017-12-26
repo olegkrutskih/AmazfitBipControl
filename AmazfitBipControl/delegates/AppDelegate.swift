@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var messagesArray = [String]()
     var defaultServices = [String: DefaultService]()
     var defaultCharacteristics = [String: DefaultCharacteristic]()
-    var peripheralManager: PeripheralManager?
+    //var peripheralManager: PeripheralManager?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Utils.log("didFinishLaunchingWithOptions", args: nil)

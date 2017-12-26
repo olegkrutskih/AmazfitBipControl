@@ -23,8 +23,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         }
         return CBManagerState(rawValue: (_manager?.state.rawValue)!)
     }
-    private let notificationCenter = NotificationCenter.default
-    private var isConnecting = false
+    //private var isConnecting = false
     
     private(set) var selectedPeripheral: CBPeripheral?
     var peripferal: CBPeripheral? {
@@ -101,11 +100,11 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         return instance
     }
     
-    var peripheralManager: CBPeripheralManager?
+    //var peripheralManager: CBPeripheralManager?
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         Utils.log("peripheralManagerDidUpdateState", from: classForCoder, args: nil)
-        self.peripheralManager?.startAdvertising([CBAdvertisementDataLocalNameKey: UIDevice.current.name])
+        //self.peripheralManager?.startAdvertising([CBAdvertisementDataLocalNameKey: UIDevice.current.name])
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
@@ -114,7 +113,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         }
         else if central.state == .poweredOn {
             Utils.log("CoreBluetooth BLE hardware is powered on and ready", args: nil)
-            self.peripheralManager = CBPeripheralManager.init(delegate: self, queue: nil)
+            //self.peripheralManager = CBPeripheralManager.init(delegate: self, queue: nil)
         }
         else if central.state == .unauthorized {
             print("CoreBluetooth BLE state is unauthorized")
@@ -132,8 +131,12 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         Utils.log("didConnect peripheral event", from: classForCoder, args: ["Name": (peripheral.name)!, "inentifier":peripheral.identifier])
         bluetoothDelegate?.didConnectedPeripheral?(peripheral)
         self.selectedPeripheral?.discoverServices(nil)
-        self.appDelegate.peripheralManager = PeripheralManager.init(withUID: "Amazfit Bip")
-        self.appDelegate.peripheralManager?.startAdvertising()
+
+//        ANCS fix later
+//        self.appDelegate.peripheralManager = PeripheralManager.init(withUID: "Amazfit Bip")
+//        self.appDelegate.peripheralManager?.startAdvertising()
+//
+        
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {

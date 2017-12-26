@@ -60,7 +60,7 @@ class DiscoverDevicesTableViewController: UITableViewController {
         }
         cell.deviceName.text = devices[indexPath.row].name
         cell.deviceUUID.text = devices[indexPath.row].identifier.uuidString
-        cell.device = devices[indexPath.row]
+        cell.device = self.devices[indexPath.row]
         
         return cell
     }
