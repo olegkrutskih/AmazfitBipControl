@@ -129,13 +129,13 @@ class DiscoveryCharacteristicsTableViewController: UITableViewController, Blueto
     func didReadValueForCharacteristic(_ characteristic: CBCharacteristic) {
         if characteristic.value != nil && characteristic.value!.count != 0 {
             switch characteristic.uuid {
-                case AmazfitBipService.UUID_STEPS:
+                case GattCharacteristics.UUID_CHARACTERISTIC_7_REALTIME_STEPS.cbuuid:
                     let steps = AmazfitNotifyReaderSupport.readStepsValue(data: characteristic.value)
                     Utils.letsNotify(message: "Current steps value: \(steps)", value: 0)
-                case AmazfitBipService.UUID_BATT_INFO:
+                case GattCharacteristics.UUID_CHARACTERISTIC_6_BATTERY_INFO.cbuuid:
                     let batt = AmazfitNotifyReaderSupport.readBatteryLevel(data: characteristic.value)
                     Utils.letsNotify(message: "Current battery level: \(batt)", value: 0)
-                case AmazfitDefaultCharacteristic.getInstance().getCBUUID("UUID_CHARACTERISTIC_DEVICEEVENT"):
+                case GattCharacteristics.UUID_CHARACTERISTIC_DEVICEEVENT.cbuuid:
                     let event = AmazfitNotifyReaderSupport.readDeviceEvent(data: characteristic.value)
                     Utils.letsNotify(message: "Current event: \(event)", value: 0)
                 default:
@@ -150,7 +150,10 @@ class DiscoveryCharacteristicsTableViewController: UITableViewController, Blueto
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "characteristicCell", for: indexPath) as! ServicesTableViewCell
-        cell.name!.text = AmazfitDefaultCharacteristic.getInstance().getHumanNameByValue(val: self.characteristics[indexPath.row].uuid)
+        cell.name!.text = self.characteristics[indexPath.row].uuid.uuidString
+        if let c = GattCharacteristics(rawValue: self.characteristics[indexPath.row].uuid.uuidString) {
+            cell.name!.text = c.description
+        }
         cell.uuid!.text = self.characteristics[indexPath.row].uuid.uuidString
         cell.characteristic = self.characteristics[indexPath.row]
         //        let isActive = self.services[indexPath.row].isActive

@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class InterfaceTableViewController: UITableViewController {
 
     override func viewDidLoad() {
@@ -22,8 +23,11 @@ class InterfaceTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.register(UINib(nibName: "InfoCell", bundle: nil), forCellReuseIdentifier: "idInfoCell")
+        
     }
 
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -38,7 +42,7 @@ class InterfaceTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return 1
     }
 
     

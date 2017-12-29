@@ -53,7 +53,7 @@ class DiscoverDevicesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "deviceCell", for: indexPath) as! DeviceTableViewCell
         cell.deviceImage.frame = CGRect.init(x: 0, y: 0, width: 95, height: 95)
-        if self.devices[indexPath.row].name == AmazfitDefaultServices.amazfitDeviceName {
+        if self.devices[indexPath.row].name == DefinesConstant.AMAZFIT_BIP_DEVICE_NAME.rawValue {
             cell.deviceImage.image = #imageLiteral(resourceName: "amazfit")
         } else {
             cell.deviceImage.image = #imageLiteral(resourceName: "UnknownDevice")

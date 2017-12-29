@@ -12,6 +12,7 @@ import CoreBluetooth
  *  Bluetooth Model Delegate
  */
 @objc public protocol BluetoothDelegate : NSObjectProtocol {
+    
     /**
      The callback function when the bluetooth has updated.
      

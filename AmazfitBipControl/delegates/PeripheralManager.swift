@@ -63,7 +63,7 @@ class PeripheralManager: NSObject, CBPeripheralManagerDelegate {
         if (self.manager?.state == CBManagerState.poweredOn && !(self.manager?.isAdvertising)!) {
             Utils.log("startAdvertising", from: classForCoder, args: ["manager": manager])
             var advertisementData = [String: Any]()
-            let svUUID = CBUUID.init(string: DefinesANCS.ANCS_SV_UUID.rawValue)
+            let svUUID = CBUUID.init(string: DefinesConstant.ANCS_SV_UUID.rawValue)
             let devUUID = CBUUID.init(nsuuid: UIDevice.current.identifierForVendor!)
             advertisementData[CBAdvertisementDataServiceUUIDsKey] = [svUUID, devUUID] //TODO
             advertisementData[CBAdvertisementDataLocalNameKey] = UIDevice.current.name

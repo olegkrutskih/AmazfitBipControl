@@ -17,10 +17,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="100" translatesAutoresizingMaskIntoConstraints="NO" id="2pY-JW-cxD">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="b100" translatesAutoresizingMaskIntoConstraints="NO" id="2pY-JW-cxD">
                         <rect key="frame" x="16" y="0.0" width="48" height="48"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Charged on 100%." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VXd-Ig-P6o">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Batteri level 100%." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VXd-Ig-P6o">
                         <rect key="frame" x="97" y="27" width="262" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                         <nil key="textColor"/>
@@ -36,10 +36,14 @@
                     <constraint firstAttribute="trailing" secondItem="VXd-Ig-P6o" secondAttribute="trailing" constant="16" id="z4Z-YM-xUL"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="batteryImage" destination="2pY-JW-cxD" id="MuV-VF-vuO"/>
+                <outlet property="batteryLabel" destination="VXd-Ig-P6o" id="bLT-Hm-TdP"/>
+            </connections>
             <point key="canvasLocation" x="-4.5" y="29"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="100" width="48" height="48"/>
+        <image name="b100" width="48" height="48"/>
     </resources>
 </document>

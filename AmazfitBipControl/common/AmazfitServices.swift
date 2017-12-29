@@ -94,6 +94,7 @@ class AmazfitDefaultServices: NSObject {
         for defaultService in self.defaultServices {
             result.append(defaultService.value.value)
         }
+        Utils.log("AmazfitDefaultServices.getCBUUIDs", args: ["Services": result])
         return result
     }
     

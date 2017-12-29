@@ -12,8 +12,8 @@ import CoreBluetooth
 
 class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, CBPeripheralManagerDelegate, DataQueryDelegate {
     
-    
     var bluetoothDelegate: BluetoothDelegate?
+    var dataQueryDelegate: DataQueryDelegate?
     var appDelegate = UIApplication.shared.delegate as! AppDelegate
     var _manager: CBCentralManager?
     private(set) var connected = false
@@ -74,7 +74,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         guard _manager != nil else {
             return [CBPeripheral]()
         }
-        return _manager?.retrieveConnectedPeripherals(withServices: AmazfitDefaultServices.getInstance().getCBUUIDs())
+        return _manager?.retrieveConnectedPeripherals(withServices: [GattServices.UUID_SERVICE_DEVICE_INFORMATION.cbuuid])
     }
     private(set) var connectedServices: [CBService]?
     
@@ -93,7 +93,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         var dic : [String : Any] = Dictionary()
         dic[CBCentralManagerOptionShowPowerAlertKey] = false
         _manager = CBCentralManager(delegate: self, queue: nil, options: dic)
-        
+
     }
     
     static func getInstance() -> BluetoothManager {
@@ -161,7 +161,28 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         bluetoothDelegate?.didReadValueForCharacteristic?(characteristic)
     }
     
+    func discoverServices(cbuuid: [CBUUID]) {
+        Utils.log("discoverService delegate", from: classForCoder, args: nil)
+        self.selectedPeripheral?.discoverServices(cbuuid)
+    }
+    
+    func discoverCharacteristics(cbuuid: [CBUUID], service: CBService) {
+        Utils.log("discoverCharacteristic delegate", from: classForCoder, args: nil)
+        self.selectedPeripheral?.discoverCharacteristics(cbuuid, for: service)
+    }
+    
     func queryBattInfo() {
-        <#code#>
+        Utils.log("discoverService queryBattInfo", from: classForCoder, args: nil)
+        if let ss = self.selectedPeripheral?.services {
+            for s in ss {
+                if let cc = s.characteristics {
+                    for c in cc {
+                        if c.uuid == GattCharacteristics.UUID_CHARACTERISTIC_6_BATTERY_INFO.cbuuid {
+                            self.selectedPeripheral?.readValue(for: c)
+                        }
+                    }
+                }
+            }
+        }                        
     }
 }

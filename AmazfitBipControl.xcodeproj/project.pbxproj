@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		24688BA11FE9CDB70068DBC2 /* ListenCharacteristicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24688BA01FE9CDB70068DBC2 /* ListenCharacteristicViewController.swift */; };
 		24F103241FE73699004B4AE3 /* AmazfitCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F103231FE73699004B4AE3 /* AmazfitCharacteristic.swift */; };
-		7402A0151FF0DFE20071B27D /* DefinesANCS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402A0141FF0DFE20071B27D /* DefinesANCS.swift */; };
+		7402A0151FF0DFE20071B27D /* DefinesConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402A0141FF0DFE20071B27D /* DefinesConstant.swift */; };
 		7402A0171FF0E17E0071B27D /* PeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402A0161FF0E17E0071B27D /* PeripheralManager.swift */; };
 		7402A0191FF0FE560071B27D /* PeripheralManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402A0181FF0FE560071B27D /* PeripheralManagerDelegate.swift */; };
 		7402A01B1FF1033B0071B27D /* PeripheralManagerDelegateFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402A01A1FF1033B0071B27D /* PeripheralManagerDelegateFlags.swift */; };
@@ -17,6 +17,9 @@
 		7402A0231FF4D6EF0071B27D /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402A0221FF4D6EF0071B27D /* InfoTableViewCell.swift */; };
 		7402A0251FF4D78A0071B27D /* InterfaceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402A0241FF4D78A0071B27D /* InterfaceTableViewController.swift */; };
 		7402A0271FF523D20071B27D /* DataQueryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402A0261FF523D20071B27D /* DataQueryDelegate.swift */; };
+		7402A02B1FF61BDE0071B27D /* GattServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402A02A1FF61BDE0071B27D /* GattServices.swift */; };
+		7402A02D1FF634630071B27D /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402A02C1FF634630071B27D /* EnumCollection.swift */; };
+		7402A02F1FF63F2B0071B27D /* GattCharacteristics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402A02E1FF63F2B0071B27D /* GattCharacteristics.swift */; };
 		7453AC831FED22CD00531A2B /* AmazfitNotifyReaderSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7453AC821FED22CD00531A2B /* AmazfitNotifyReaderSupport.swift */; };
 		7453AC851FED3EEE00531A2B /* AmazfitDeviceEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7453AC841FED3EEE00531A2B /* AmazfitDeviceEvent.swift */; };
 		7453AC871FED4BA600531A2B /* PlayerActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7453AC861FED4BA600531A2B /* PlayerActions.swift */; };
@@ -50,7 +53,7 @@
 /* Begin PBXFileReference section */
 		24688BA01FE9CDB70068DBC2 /* ListenCharacteristicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenCharacteristicViewController.swift; sourceTree = "<group>"; };
 		24F103231FE73699004B4AE3 /* AmazfitCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazfitCharacteristic.swift; sourceTree = "<group>"; };
-		7402A0141FF0DFE20071B27D /* DefinesANCS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinesANCS.swift; sourceTree = "<group>"; };
+		7402A0141FF0DFE20071B27D /* DefinesConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinesConstant.swift; sourceTree = "<group>"; };
 		7402A0161FF0E17E0071B27D /* PeripheralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralManager.swift; sourceTree = "<group>"; };
 		7402A0181FF0FE560071B27D /* PeripheralManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralManagerDelegate.swift; sourceTree = "<group>"; };
 		7402A01A1FF1033B0071B27D /* PeripheralManagerDelegateFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralManagerDelegateFlags.swift; sourceTree = "<group>"; };
@@ -58,6 +61,9 @@
 		7402A0221FF4D6EF0071B27D /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		7402A0241FF4D78A0071B27D /* InterfaceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceTableViewController.swift; sourceTree = "<group>"; };
 		7402A0261FF523D20071B27D /* DataQueryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataQueryDelegate.swift; sourceTree = "<group>"; };
+		7402A02A1FF61BDE0071B27D /* GattServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GattServices.swift; sourceTree = "<group>"; };
+		7402A02C1FF634630071B27D /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
+		7402A02E1FF63F2B0071B27D /* GattCharacteristics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GattCharacteristics.swift; sourceTree = "<group>"; };
 		7453AC821FED22CD00531A2B /* AmazfitNotifyReaderSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazfitNotifyReaderSupport.swift; sourceTree = "<group>"; };
 		7453AC841FED3EEE00531A2B /* AmazfitDeviceEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazfitDeviceEvent.swift; sourceTree = "<group>"; };
 		7453AC861FED4BA600531A2B /* PlayerActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerActions.swift; sourceTree = "<group>"; };
@@ -142,6 +148,7 @@
 				7495D5E31FEA622200391F9F /* BluetoothDelegate.swift */,
 				7402A0181FF0FE560071B27D /* PeripheralManagerDelegate.swift */,
 				7402A0261FF523D20071B27D /* DataQueryDelegate.swift */,
+				7402A02C1FF634630071B27D /* EnumCollection.swift */,
 			);
 			path = protocols;
 			sourceTree = "<group>";
@@ -236,7 +243,9 @@
 				74BCAFA11FE7F2D50078164C /* AmazfitServices.swift */,
 				24F103231FE73699004B4AE3 /* AmazfitCharacteristic.swift */,
 				7453AC821FED22CD00531A2B /* AmazfitNotifyReaderSupport.swift */,
-				7402A0141FF0DFE20071B27D /* DefinesANCS.swift */,
+				7402A0141FF0DFE20071B27D /* DefinesConstant.swift */,
+				7402A02A1FF61BDE0071B27D /* GattServices.swift */,
+				7402A02E1FF63F2B0071B27D /* GattCharacteristics.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -335,9 +344,11 @@
 				7402A01B1FF1033B0071B27D /* PeripheralManagerDelegateFlags.swift in Sources */,
 				7402A0271FF523D20071B27D /* DataQueryDelegate.swift in Sources */,
 				7402A0231FF4D6EF0071B27D /* InfoTableViewCell.swift in Sources */,
+				7402A02F1FF63F2B0071B27D /* GattCharacteristics.swift in Sources */,
 				74A51B9F1FE40CCF001BE70D /* GattService.swift in Sources */,
 				74A51B6E1FE28A28001BE70D /* AmazfitBipControl.xcdatamodeld in Sources */,
 				74BCAFA81FE810280078164C /* NavigationViewController.swift in Sources */,
+				7402A02D1FF634630071B27D /* EnumCollection.swift in Sources */,
 				7402A0171FF0E17E0071B27D /* PeripheralManager.swift in Sources */,
 				7495D5E11FEA468500391F9F /* BluetoothManager.swift in Sources */,
 				7402A0251FF4D78A0071B27D /* InterfaceTableViewController.swift in Sources */,
@@ -349,7 +360,7 @@
 				74A51BAA1FE79BE3001BE70D /* TabBarController.swift in Sources */,
 				74BCAFAA1FE81BAA0078164C /* ServicesTableViewCell.swift in Sources */,
 				74BCAFA61FE80F980078164C /* ServicesTableViewController.swift in Sources */,
-				7402A0151FF0DFE20071B27D /* DefinesANCS.swift in Sources */,
+				7402A0151FF0DFE20071B27D /* DefinesConstant.swift in Sources */,
 				74A51BA81FE7884F001BE70D /* MessagingViewController.swift in Sources */,
 				7402A0191FF0FE560071B27D /* PeripheralManagerDelegate.swift in Sources */,
 				7495D5DD1FEA45D400391F9F /* DiscoverServicesTableViewController.swift in Sources */,
@@ -362,6 +373,7 @@
 				74A51B661FE28A28001BE70D /* AppDelegate.swift in Sources */,
 				24F103241FE73699004B4AE3 /* AmazfitCharacteristic.swift in Sources */,
 				7453AC871FED4BA600531A2B /* PlayerActions.swift in Sources */,
+				7402A02B1FF61BDE0071B27D /* GattServices.swift in Sources */,
 				74BCAFA01FE7DC150078164C /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

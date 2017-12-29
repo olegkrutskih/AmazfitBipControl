@@ -47,6 +47,7 @@ class DiscoverServicesTableViewController: UITableViewController, BluetoothDeleg
             self.services.removeAll()
             self.services += srvs
         }
+        Utils.log("didDiscoverServices", from: classForCoder, args: ["services": peripheral.services])
         tableView.reloadData()
     }
 
@@ -70,7 +71,12 @@ class DiscoverServicesTableViewController: UITableViewController, BluetoothDeleg
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "serviceCell", for: indexPath) as! ServicesTableViewCell
-        cell.name!.text = AmazfitDefaultServices.getInstance().getHumanNameByValue(val: self.services[indexPath.row].uuid) // self.defaultServicesNumberedArray[indexPath.row]
+//        if GattServices.values.contains(<#T##element: GattServices##GattServices#>)
+        cell.name!.text = self.services[indexPath.row].uuid.uuidString
+        if let s = GattServices(rawValue: self.services[indexPath.row].uuid.uuidString) {
+            cell.name!.text = s.description
+        }
+
         cell.uuid!.text = self.services[indexPath.row].uuid.uuidString
         cell.service = self.services[indexPath.row]
 //        let isActive = self.services[indexPath.row].isActive
