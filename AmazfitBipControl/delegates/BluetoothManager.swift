@@ -74,7 +74,8 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         guard _manager != nil else {
             return [CBPeripheral]()
         }
-        return _manager?.retrieveConnectedPeripherals(withServices: [GattServices.UUID_SERVICE_DEVICE_INFORMATION.cbuuid])
+        return _manager?.retrieveConnectedPeripherals(withServices: AmazfitDefaultServices.getInstance().getCBUUIDs())
+//        return _manager?.retrieveConnectedPeripherals(withServices: [GattServices.UUID_SERVICE_DEVICE_INFORMATION.cbuuid])
     }
     private(set) var connectedServices: [CBService]?
     

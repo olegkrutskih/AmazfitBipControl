@@ -33,14 +33,50 @@ class InfoTableViewCell: UITableViewCell, BluetoothDelegate {
     func didDiscoverCharacteritics(_ service: CBService) {
         Utils.log("didDiscoverCharacteritics", from: classForCoder, args: ["service": service])
         if service.uuid == GattServices.UUID_SERVICE_BATTERY_SERVICE.cbuuid {
-            dataQueryDelegate?.queryBattInfo?()
+//            dataQueryDelegate?.queryBattInfo?()
+            if let cc = service.characteristics {
+                for c in cc {
+                    if c.uuid == GattCharacteristics.UUID_CHARACTERISTIC_6_BATTERY_INFO.cbuuid {
+                        let batt = AmazfitNotifyReaderSupport.readBatteryLevel(data: c.value)
+                        updateCell(batt: batt)
+                    }
+                }
+            }
             
         }
     }
     
+    func updateCell(batt: Int) {
+        var img: UIImage = #imageLiteral(resourceName: "b101")
+        
+        if batt < 100 {
+            img = #imageLiteral(resourceName: "b80")
+        }
+        if batt < 80 {
+            img = #imageLiteral(resourceName: "b60")
+        }
+        if batt < 60 {
+            img = #imageLiteral(resourceName: "b40")
+        }
+        if batt < 40 {
+            img = #imageLiteral(resourceName: "b20")
+        }
+        if batt < 20 {
+            img = #imageLiteral(resourceName: "b10")
+        }
+        if batt < 10 {
+            img = #imageLiteral(resourceName: "b0")
+        }
+        
+        batteryImage.image = img
+        batteryLabel.text = "Battery level \(batt)%."
+    }
+    
     func didDiscoverServices(_ peripheral: CBPeripheral) {
-        Utils.log("didDiscoverServices", from: classForCoder, args: ["device": peripheral])
-        dataQueryDelegate?.discoverCharacteristics?(cbuuid: [GattCharacteristics.UUID_CHARACTERISTIC_6_BATTERY_INFO.cbuuid], service: service)
+        Utils.log("didDiscoverServices", from: classForCoder, args: ["service": peripheral.services])
+        if let s = peripheral.services!.first(where: {$0.uuid == GattServices.UUID_SERVICE_BATTERY_SERVICE.cbuuid}) {
+            dataQueryDelegate?.discoverCharacteristics?(cbuuid: [GattCharacteristics.UUID_CHARACTERISTIC_6_BATTERY_INFO.cbuuid], service: s)
+        }
     }
 
     func didReadValueForCharacteristic(_ characteristic: CBCharacteristic) {
@@ -49,29 +85,7 @@ class InfoTableViewCell: UITableViewCell, BluetoothDelegate {
             if characteristic.uuid == GattCharacteristics.UUID_CHARACTERISTIC_6_BATTERY_INFO.cbuuid {
                 let batt = AmazfitNotifyReaderSupport.readBatteryLevel(data: characteristic.value)
                 
-                var img: UIImage = #imageLiteral(resourceName: "b101")
-                
-                if batt < 100 {
-                    img = #imageLiteral(resourceName: "b80")
-                }
-                if batt < 80 {
-                    img = #imageLiteral(resourceName: "b60")
-                }
-                if batt < 60 {
-                    img = #imageLiteral(resourceName: "b40")
-                }
-                if batt < 40 {
-                    img = #imageLiteral(resourceName: "b20")
-                }
-                if batt < 20 {
-                    img = #imageLiteral(resourceName: "b10")
-                }
-                if batt < 10 {
-                    img = #imageLiteral(resourceName: "b0")
-                }
-                
-                batteryImage.image = img
-                batteryLabel.text = "Battery level \(batt)%."
+                updateCell(batt: batt)
                 
             }
         }
