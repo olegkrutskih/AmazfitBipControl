@@ -1,53 +1,27 @@
 //
-//  DiscoverServicesTableViewController.swift
+//  InterfaceTableViewController.swift
 //  AmazfitBipControl
 //
-//  Created by Круцких Олег on 20.12.2017.
+//  Created by Круцких Олег on 28.12.2017.
 //  Copyright © 2017 Круцких Олег. All rights reserved.
 //
 
 import UIKit
-import CoreBluetooth
 
-class DiscoverServicesTableViewController: UITableViewController, BluetoothDelegate {
-    var device: CBPeripheral?
-    var services = [CBService]()
-    fileprivate let bluetoothManager = BluetoothManager.getInstance()
-    
+class InterfaceTableViewController: UITableViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        bluetoothManager.bluetoothDelegate = self
-
+        tableView.reloadData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if self.device != nil {
-            bluetoothManager.peripferal = self.device
-        }
-    }
-    
-    func didConnectedPeripheral(_ connectedPeripheral: CBPeripheral) {
-        Utils.log("didConnectedPeripheral", from: classForCoder, args: ["device": connectedPeripheral])
-        if let srvs = connectedPeripheral.services {
-            self.services.removeAll()
-            self.services += srvs
-        }
-        tableView.reloadData()
-    }
-    
-    func didDiscoverServices(_ peripheral: CBPeripheral) {
-        Utils.log("didDiscoverServices", from: classForCoder, args: ["device": peripheral])
-        if let srvs = peripheral.services {
-            self.services.removeAll()
-            self.services += srvs
-        }
-        tableView.reloadData()
+        tableView.register(UINib(nibName: "InfoCell", bundle: nil), forCellReuseIdentifier: "idInfoCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,20 +38,18 @@ class DiscoverServicesTableViewController: UITableViewController, BluetoothDeleg
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.services.count
+        return 3
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "serviceCell", for: indexPath) as! ServicesTableViewCell
-        cell.name!.text = AmazfitDefaultServices.getInstance().getHumanNameByValue(val: self.services[indexPath.row].uuid) // self.defaultServicesNumberedArray[indexPath.row]
-        cell.uuid!.text = self.services[indexPath.row].uuid.uuidString
-        cell.service = self.services[indexPath.row]
-//        let isActive = self.services[indexPath.row].isActive
-  //      cell.isActive.setOn(isActive, animated: false)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "idInfoCell", for: indexPath) as! InfoTableViewCell
+
+        // Configure the cell...
+
         return cell
     }
-    
+ 
 
     /*
     // Override to support conditional editing of the table view.
@@ -114,19 +86,14 @@ class DiscoverServicesTableViewController: UITableViewController, BluetoothDeleg
     }
     */
 
-    
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "discoverCharacteristics" {
-            let destView = segue.destination as! DiscoveryCharacteristicsTableViewController
-            let cell = sender as! ServicesTableViewCell
-            destView.service = cell.service
-        }
     }
-    
+    */
 
 }

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreBluetooth
 
-class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, CBPeripheralManagerDelegate {
+class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, CBPeripheralManagerDelegate, DataQueryDelegate {
     
     
     var bluetoothDelegate: BluetoothDelegate?
@@ -161,5 +161,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         bluetoothDelegate?.didReadValueForCharacteristic?(characteristic)
     }
     
-    
+    func queryBattInfo() {
+        <#code#>
+    }
 }
